@@ -1,13 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use App\Knowabout;
+use App\Traits\imagefileTrait;
 
 class AboutController extends Controller
-{
+{   
+    use imagefileTrait;
+
      // ABOUT
     public function about(){
         return view('cd-admin.home.about.aboutform');
@@ -40,14 +41,17 @@ class AboutController extends Controller
         $about = new Knowabout;
         $about['name'] = $request['name'];
         $about['tagline'] = $request['tagline'];
-         if(isset($request['image'])){
-            $file = $request['image'];
-            $fileName = time().$file->getClientOriginalName();
-            $destinationPath = 'imageuploadforabout';
-            $file->move($destinationPath,$fileName);
-            $file->save = $fileName;
-        }
-        $about['image']=$fileName;
+        //  if(isset($request['image'])){
+        //     $file = $request['image'];
+        //     $fileName = time().$file->getClientOriginalName();
+        //     $destinationPath = 'imageuploadforabout';
+        //     $file->move($destinationPath,$fileName);
+        //     $file->save = $fileName;
+        // }
+        // dd($this->  getImage());
+        $nabin = $this->getImage();
+        dd($nabin);
+        // $about['image'] = $this->getImage();
         $about['altimage'] = $request['altimage'];
         $about['description'] = $request['description'];
         if(isset($request['pdf'])){
@@ -98,16 +102,17 @@ class AboutController extends Controller
         return redirect()->back();
     }
 
-    // public function getImage(){
-    //      if(isset($request['image'])){
-    //         $file = $request['image'];
-    //         $fileName = time().$file->getClientOriginalName();
-    //         $destinationPath = 'imageuploadforabout';
-    //         $file->move($destinationPath,$fileName);
-    //         $file->save = $fileName;
-    //     }
+    public function getImage(){
+         if(isset($request['image'])){
+            $file = $request['image'];
+            $fileName = time().$file->getClientOriginalName();
+            $destinationPath = 'imageuploadforabout';
+            $file->move($destinationPath,$fileName);
+            $file->save = $fileName;
+            return $fileName;
+        }
 
-    // }
+    }
 
 
 //     public function getImage()
