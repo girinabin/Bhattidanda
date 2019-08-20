@@ -12,16 +12,7 @@ class DashboardController extends Controller
         return view('cd-admin.home.home');
     }
 
-     // SERVICE
-    public function service(){
-        return view('cd-admin.home.service.serviceform');
-    }
-    public function showservice(){
-        return view('cd-admin.home.service.serviceshow');
-    }
-    public function servicedetail(){
-        return view('cd-admin.home.service.servicedetail');
-    }
+    
 
     // PACKAGE
     public function package(){
@@ -36,15 +27,7 @@ class DashboardController extends Controller
    
     // GALLERY
 
-    public function gallery(){
-        return view('cd-admin.home.gallery.galleryform');
-    }
-    public function showgallery(){
-        return view('cd-admin.home.gallery.galleryshow');
-    }
-     public function imageview(){
-        return view('cd-admin.home.gallery.imageview');
-    }
+    
 
     // CAROUSEL
 

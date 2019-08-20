@@ -112,8 +112,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('addservice')}}"><i class="fa fa-circle-o"></i>Add Services</a></li>
-                    <li><a href="{{route('showservice')}}"><i class="fa fa-circle-o"></i>View Services </a></li>
+                    <li class="active"><a href="{{route('services.create')}}"><i class="fa fa-circle-o"></i>Add Services</a></li>
+                    <li><a href="{{route('services.index')}}"><i class="fa fa-circle-o"></i>View Services </a></li>
                 </ul>
             </li>
 
@@ -142,8 +142,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('addimage')}}"><i class="fa fa-circle-o"></i>Add New Gallery</a></li>
-                    <li><a href="{{route('showimage')}}"><i class="fa fa-circle-o"></i>View All Gallery</a></li>
+                    <li class="active"><a href="{{route('images.create')}}"><i class="fa fa-circle-o"></i>Add New Gallery</a></li>
+                    <li><a href="{{route('images.index')}}"><i class="fa fa-circle-o"></i>View All Gallery</a></li>
                 </ul>
             </li>
 
@@ -197,7 +197,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('about')}}"><i class="fa fa-circle-o"></i>Add About</a></li>
+                   {{--  <li class="active"><a href="{{route('about')}}"><i class="fa fa-circle-o"></i>Add About</a></li> --}}
                     <li><a href="{{route('showabout')}}"><i class="fa fa-circle-o"></i>Show About</a></li>
                 </ul>
             </li>

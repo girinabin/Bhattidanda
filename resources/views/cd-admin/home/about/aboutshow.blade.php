@@ -44,9 +44,9 @@ About Show
                 <tbody>
                   @foreach($about as $a)
                 <tr>
-                  <td>{{$a['id']}}</td>
-                  <td>{{$a['name']}}</td>
-                  <td>{{$a['tagline']}}</td>
+                  <td>{{$a->id}}</td>
+                  <td>{{$a->name}}</td>
+                  <td>{{$a->tagline}}</td>
                   
                   <td>
 		                <div class="btn-group">
@@ -56,13 +56,13 @@ About Show
 		                    <span class="sr-only">Toggle Dropdown</span>
 		                  </button>
 		                  <ul class="dropdown-menu" role="menu">
-		                    <li><a href=""  data-toggle="modal" data-target="#myModal{{$a['id']}}">
+		                    <li><a href=""  data-toggle="modal" data-target="#myModal{{$a->id}}">
                					<i class="fa fa-edit"></i> Edit</a></li>
                					{{-- edit modal below
                					 --}}
               				
 
-		                    <li><a href="{{route('aboutdetail')}}"><i class="fa fa-eye"></i>View</a></li>
+		                    <li><a href="{{route('aboutdetail',$a->id)}}"><i class="fa fa-eye"></i>View</a></li>
 		                  </ul>
 		              </div>
                   </td>
@@ -98,7 +98,8 @@ About Show
 
 <!-- edit model -->
 @foreach($about as $a)
-<div id="myModal{{$a['id']}}" class="modal fade" role="dialog">
+
+<div id="myModal{{$a->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
@@ -109,16 +110,16 @@ About Show
       </div>
       <div class="modal-body">
         <div class="box box-primary">  
-             <form role="form" method="post" action="{{ route('aboutupdate',$a['id']) }}" enctype="multipart/form-data">
+             <form role="form" method="post" action="{{ route('aboutupdate',$a->id) }}" enctype="multipart/form-data">
               @csrf
                 <div class="box-body">
                   <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name"  value="{{$a['name']}}">
+                    <input type="text" class="form-control" name="name"  value="{{$a->name}}">
                   </div>
                   <div class="form-group">
                     <label for="name">Tagline</label>
-                    <input type="text" class="form-control" name="tagline" value="{{$a['tagline']}}">
+                    <input type="text" class="form-control" name="tagline" value="{{$a->tagline}}">
                   </div>
                   
                   <div class="form-group">
@@ -127,11 +128,11 @@ About Show
                   </div>
                   <div class="form-group">
                     <label for="altimage">Alt Image</label>
-                    <input type="text" class="form-control"  name="altimage" value="{{$a['altimage']}}" >
+                    <input type="text" class="form-control"  name="altimage" value="{{$a->altimage}}" >
                   </div>
                   <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea name="description" class="form-control" style="height=100px;" id="summernote">{!! $a['description'] !!}</textarea>
+                    <textarea name="description" class="form-control" style="height=100px;" id="summernote">{!! $a->description !!}</textarea>
                   </div>
                 
                   <div class="form-group">
@@ -140,7 +141,7 @@ About Show
                   </div>
                   <div class="form-group">
                     <label for="video">Video link</label>
-                    <input type="text" class="form-control" name="video" value="{{$a['video']}}">
+                    <input type="text" class="form-control" name="video" value="{{$a->video}}">
                   </div>
 
                 </div>

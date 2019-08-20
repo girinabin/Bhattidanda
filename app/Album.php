@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Knowabout extends Model
+class Album extends Model
 {
-	protected $guarded = [];
+    protected $guarded = [];
 }

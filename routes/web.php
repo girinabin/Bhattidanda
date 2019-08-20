@@ -18,9 +18,12 @@ Route::get('/dashboard','DashboardController@index')->name('dashboard');
 
 // services
 
-Route::get('/service','DashboardController@service')->name('addservice');
-Route::get('/serviceshow','DashboardController@showservice')->name('showservice');
-Route::get('/servicedetail','DashboardController@servicedetail')->name('servicedetail');
+Route::get('/services','ServiceController@index')->name('services.index');
+Route::get('/services/create','ServiceController@create')->name('services.create');
+Route::post('/services/store','ServiceController@store')->name('services.store');
+Route::patch('/services/{service}','ServiceController@update')->name('services.update');
+Route::get('/services/{service}','ServiceController@show')->name('services.show');
+Route::delete('/services/{service}','ServiceController@destroy')->name('services.destroy');
 
 // packages
 
@@ -32,9 +35,15 @@ Route::get('/packagedetail','DashboardController@packagedetail')->name('packaged
 
 // gallery
 
-Route::get('/gallery','DashboardController@gallery')->name('addimage');
-Route::get('/galleryshow','DashboardController@showgallery')->name('showimage');
-Route::get('/imageview','DashboardController@imageview')->name('imageview');
+// Route::get('/imageview','DashboardController@imageview')->name('imageview');
+Route::get('/images','GalleryController@index')->name('images.index');
+Route::get('images/create','GalleryController@create')->name('images.create');
+Route::post('images/store','GalleryController@store')->name('images.store');
+Route::get('images/{image}','GalleryController@show')->name('images.show');
+Route::delete('/images/{image}','GalleryController@destroy')->name('images.destroy');
+Route::post('imagealbums','GalleryController@store1')->name('imagealbums.store1');
+Route::delete('imagealbums/{imagealbum}','GalleryController@destroy1')->name('imagealbums.destroy1');
+
 
 // carousel
 
@@ -58,8 +67,8 @@ Route::get('/reviewdetail','DashboardController@reviewdetail')->name('reviewdeta
 // about
 Route::get('/about','AboutController@about')->name('about');
 Route::get('/aboutshow','AboutController@aboutshow')->name('showabout');
-Route::get('/aboutdetail','AboutController@aboutdetail')->name('aboutdetail');
-Route::post('/aboutstore','AboutController@aboutstore')->name('aboutstore');
+Route::get('/aboutdetail/{id}','AboutController@aboutdetail')->name('aboutdetail');
+// Route::post('/aboutstore','AboutController@aboutstore')->name('aboutstore');
 Route::post('/aboutupdate/{id}','AboutController@aboutupdate')->name('aboutupdate');
 
 

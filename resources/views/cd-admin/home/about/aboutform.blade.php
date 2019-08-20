@@ -28,32 +28,42 @@ About Form
 								@csrf
 								<div class="box-body">
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('name')}}</div>
 										<label for="name">Name</label>
-										<input type="text" class="form-control" name="name" id="name" placeholder="Enter Name">
+										<input type="text" class="form-control" name="name" value="{{old('name')}}"id="name" placeholder="Enter Name">
 									</div>
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('tagline')}}</div>
 										<label for="name">Tagline</label>
-										<input type="text" class="form-control" name="tagline" id="name" placeholder="Enter Tagline for name">
+										<input type="text" class="form-control" name="tagline" id="name" value="{{old('tagline')}}" placeholder="Enter Tagline for name">
 									</div>
 									
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('image')}}</div>
 										<label for="name">Image</label>
 										<input type="file" class="form-control" name="image" id="image">
 									</div>
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('altimage')}}</div>
+
 										<label for="altimage">Alt Image</label>
 										<input type="text" class="form-control" name="altimage" id="altimage" placeholder="Enter image name">
 									</div>
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('description')}}</div>
+
 										<label for="description">Description</label>
-										<textarea name="description" class="form-control" id="summernote"></textarea>
+										<textarea name="description" class="form-control" id="summernote" value="{{old('descripiton')}}"></textarea>
 									</div>
 									
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('pdf')}}</div>
+
 										<label for="pdf">Pdf</label>
-										<input type="file" class="form-control" name="pdf" id="pdf">
+										<input type="file" class="form-control"  name="pdf" id="pdf">
 									</div>
 									<div class="form-group">
+										<div class="alert-warning">{{$errors->first('video')}}</div>
 										<label for="video">Video link</label>
 										<input type="text" class="form-control" name="video" id="video">
 									</div>
