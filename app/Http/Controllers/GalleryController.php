@@ -79,8 +79,8 @@ class GalleryController extends Controller
     	return redirect()->back();
     }
     public function destroy1(Image $imagealbum){
-    	dd($imagealbum->image);
-    	// $imagealbum->delete();
+    	// dd($imagealbum->image);
+    	$imagealbum->delete();
     	return redirect()->back();
     }
     private function validateRequest(){

@@ -47,10 +47,13 @@ Route::delete('imagealbums/{imagealbum}','GalleryController@destroy1')->name('im
 
 // carousel
 
-Route::get('/carousel','DashboardController@carousel')->name('addcarousel');
-Route::get('/carouselshow','DashboardController@carouselshow')->name('showcarousel');
-Route::get('/carouselview','DashboardController@carouselview')->name('carouselview');
 
+Route::get('/carousels','CarouselController@index')->name('carousels.index');
+Route::get('/carousels/create','CarouselController@create')->name('carousels.create');
+Route::post('/carousels/store','CarouselController@store')->name('carousels.store');
+Route::get('/carousels/{carousel}','CarouselController@show')->name('carousels.show');
+Route::delete('/carousels/{carousel}','CarouselController@destroy')->name('carousels.destroy');
+Route::patch('/status/{stat}','CarouselController@status')->name('status.stat');
 
 
 // booking
@@ -68,8 +71,9 @@ Route::get('/reviewdetail','DashboardController@reviewdetail')->name('reviewdeta
 Route::get('/about','AboutController@about')->name('about');
 Route::get('/aboutshow','AboutController@aboutshow')->name('showabout');
 Route::get('/aboutdetail/{id}','AboutController@aboutdetail')->name('aboutdetail');
-// Route::post('/aboutstore','AboutController@aboutstore')->name('aboutstore');
+Route::post('/aboutstore','AboutController@aboutstore')->name('aboutstore');
 Route::post('/aboutupdate/{id}','AboutController@aboutupdate')->name('aboutupdate');
+Route::delete('abouts/{about}','AboutController@destroy')->name('abouts.destroy');
 
 
 // contact

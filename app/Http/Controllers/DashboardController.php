@@ -31,15 +31,7 @@ class DashboardController extends Controller
 
     // CAROUSEL
 
-     public function carousel(){
-        return view('cd-admin.home.carousel.carouselform');
-    }
-    public function carouselshow(){
-        return view('cd-admin.home.carousel.carouselshow');
-    }
-     public function carouselview(){
-        return view('cd-admin.home.carousel.carouselview');
-    }
+     
     // BOOKING
     
     public function bookinginbox(){

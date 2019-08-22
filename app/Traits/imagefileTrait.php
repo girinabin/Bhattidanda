@@ -9,7 +9,7 @@ trait imagefileTrait {
 		    {
             $file = $name;
             $fileName = time().$file->getClientOriginalName();
-            $destinationPath = 'imageuploadforabout';
+            $destinationPath = public_path('uploads/about');
             $file->move($destinationPath,$fileName);
            
             return $fileName;
@@ -22,7 +22,7 @@ trait imagefileTrait {
 		if(isset($name)){
             $file = $name;
             $fileName1 = time().$file->getClientOriginalName();
-            $destinationPath = 'fileuploadforabout';
+            $destinationPath = public_path('uploads/about');
             $file->move($destinationPath,$fileName1);
             return $fileName1;
         }

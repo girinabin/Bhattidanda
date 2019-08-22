@@ -40,7 +40,7 @@ Show Service
                       <td>{{$services->id}}</td>
                       <td>{{$services->name}}
                       </td>
-                      <td><img src="{{ asset('storage/'.$services->image) }}  " alt=""></td>
+                      <td><img src="{{ url('storage/app/public/'.$services->image) }}  " height="100px"; alt=""></td>
                       <td><span class="label label-warning">{{$services->active}}</span></td>
                       <td>
                         <div class="btn-group">

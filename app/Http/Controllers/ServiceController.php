@@ -59,6 +59,8 @@ class ServiceController extends Controller
     	if(request()->has('image')){
     		$service->update([
     			'image'=>request()->image->store('uploadsforservices','public'),
+                // 'image'=>request()->image->store(public_path('uploads/services')),
+
     		]);
     	}
     }

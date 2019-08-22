@@ -157,8 +157,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('addcarousel')}}"><i class="fa fa-circle-o"></i>Add New Carousel</a></li>
-                    <li><a href="{{route('showcarousel')}}"><i class="fa fa-circle-o"></i>View All Carousel</a></li>
+                    <li class="active"><a href="{{route('carousels.create')}}"><i class="fa fa-circle-o"></i>Add New Carousel</a></li>
+                    <li><a href="{{route('carousels.index')}}"><i class="fa fa-circle-o"></i>View All Carousel</a></li>
                 </ul>
             </li>
             <li class="header">Booking</li>

@@ -58,6 +58,9 @@ About Show
 		                  <ul class="dropdown-menu" role="menu">
 		                    <li><a href=""  data-toggle="modal" data-target="#myModal{{$a->id}}">
                					<i class="fa fa-edit"></i> Edit</a></li>
+                        <li><a href=""  data-toggle="modal" data-target="#delete{{$a->id}}">
+                        <i class="fa fa-trash"></i> Delete</a></li>
+
                					{{-- edit modal below
                					 --}}
               				
@@ -159,23 +162,26 @@ About Show
 
   </div>
 </div>
-@endforeach
 
 {{-- delete modal --}}
-{{-- <div id="myModal1" class="modal fade" role="dialog">
+<div id="delete{{$a->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Delete Package</h4>
+        <h4 class="modal-title">Delete About</h4>
       </div>
       <div class="modal-body">
         <h2> <p>Are you sure??</p> </h2>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Delete</button>
+        <form action="{{ route('abouts.destroy',$a->id) }}" method="POST">
+          @csrf
+          @method('DELETE')
+        <button type="submit" class="btn btn-danger pull-left">Delete</button>
+        </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
@@ -183,6 +189,8 @@ About Show
     </div>
 
   </div>
-</div> --}}
+</div>
+@endforeach
+
 
 @endsection

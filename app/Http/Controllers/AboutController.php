@@ -62,6 +62,14 @@ class AboutController extends Controller
         $about->save();
         return redirect()->back();
     }
+    public function destroy(Knowabout $about){
+        if(file_exists('public/uploads/about/'.$about->image)){
+            unlink('public/uploads/about/'.$about->image);
+        }
+        $about->delete();
+        return redirect()->back();
+
+    }
     public function validateRequest(){
         return Request()->validate([
             'name' => 'required|max:255',
