@@ -31,8 +31,8 @@ class CarouselController extends Controller
             $a['image'] = $fileName;
             $final = array_merge($data,$a);
             DB::table('carousels')->Insert($final);
-            Session::flash('success');
-            return redirect()->back();
+            // Session::flash('success');
+            return redirect('/carousels')->with('success','Data Added Successfully!');
 
         }
     	
@@ -40,14 +40,13 @@ class CarouselController extends Controller
         return view('cd-admin.home.carousel.show',compact('carousel'));
     }
     public function destroy(Carousel $carousel){
-        // dd($carousel);  
         if (file_exists('public/uploads/carousel/'.$carousel['image'])) 
         {
             unlink('public/uploads/carousel/'.$carousel['image']);
         }
         $carousel->delete();
         Session::flash('deleted');
-        return redirect('/carousels');
+        return redirect('/carousels')->with('error','Data Deleted Successfully!');
 
     }
     public function status(Carousel $stat){

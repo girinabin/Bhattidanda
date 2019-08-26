@@ -7,7 +7,7 @@ Show Service
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Services
+      Show Services
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/Services/View Services</li>
@@ -22,12 +22,11 @@ Show Service
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
-              <a href="{{ route('services.create') }}"><button class="btn btn-primary">Add</button></a>
+              <a href="{{ route('services.create') }}"><button class="btn btn-primary">Add Service</button></a>
               <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
-                      <th>id</th>
                       <th>ServiceName</th>
                       <th>Image</th>
                       <th>Status</th>
@@ -37,11 +36,33 @@ Show Service
                   <tbody>
                     @foreach($service as $services)
                     <tr>
-                      <td>{{$services->id}}</td>
-                      <td>{{$services->name}}
+                      <td>{!!$services->name!!}
                       </td>
-                      <td><img src="{{ url('storage/app/public/'.$services->image) }}  " height="100px"; alt=""></td>
-                      <td><span class="label label-warning">{{$services->active}}</span></td>
+                      <td><img src="{{ url('public/uploads/service/'.$services->image) }}  " height="50px" width="50px" ; alt=""></td>
+                      <td>
+                        <div class="btn-group">
+                            @if($services->active=='Available')
+                          <button type="button" class="btn btn-success">{{$services->active}}</button>
+                          @else
+                          <button type="button" class="btn btn-danger">{{$services->active}}</button>
+                          @endif
+
+                          <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span> 
+                          <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                          <form action="{{ route('status.service',$services->id) }}" method="post">
+                            <?phpdd('here');?>
+                              @method('PATCH')
+                              @csrf
+                      
+                            <button type="submit" class="btn btn-secondary">{{$services->active =='Available' ? 'Unavailable' : 'Available'}}</button>
+                            </form>
+                      
+                          </ul>
+                        </div>
+                      </td>
                       <td>
                         <div class="btn-group">
                           <button type="button" class="btn btn-primary">Action</button>
@@ -68,7 +89,6 @@ Show Service
                   </tbody>
                   <tfoot>
                   <tr>
-                    <th>id</th>
                     <th>ServiceName</th>
                     <th>Image</th>
                     <th>Status</th>
@@ -101,22 +121,31 @@ Show Service
             @csrf
             <div class="box-body">
               <div class="form-group">
+                <div class="text text-danger">{{$errors->first('name')}}</div>
                 <label for="name">Name</label>
                 <input type="text" class="form-control" name="name" value="{{old('name') ?? $services->name}}" id="name" placeholder="Enter Service name">
               </div>
               <div class="form-group">
+                <div class="text text-danger">{{$errors->first('image')}}</div>
+
                 <label for="image">Image</label>
-                <input type="file" id="image">
+                <input type="file" id="image" name="image">
               </div>
               <div class="form-group">
+                <div class="text text-danger">{{$errors->first('altimage')}}</div>
+
                 <label for="altimage">Alt.Image</label>
                 <input type="text" class="form-control" name="altimage" value="{{old('altimage') ?? $services->altimage}}" id="altimage" placeholder="Enter image text">
               </div>
               <div class="form-group">
+                <div class="text text-danger">{{$errors->first('summary')}}</div>
+
                   <label for="name">Summary</label>
                   <textarea name="summary" class="form-control" name="summary"  id="">{{old('summary') ?? $services->summary }}</textarea>
                 </div>
               <div class="form-group">
+                <div class="text text-danger">{{$errors->first('active')}}</div>
+
                   <label for="active">Status</label>  
                   <select name="active" id="active" class="form-control">
                     <option value=" "disabled>Select Service status</option>

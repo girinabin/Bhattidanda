@@ -28,52 +28,55 @@ About Form
 								@csrf
 								<div class="box-body">
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('name')}}</div>
-										<label for="name">Name</label>
+										<div class="text text-warning">{{$errors->first('name')}}</div>
+										<label for="name">About Name</label>
 										<input type="text" class="form-control" name="name" value="{{old('name')}}"id="name" placeholder="Enter Name">
 									</div>
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('tagline')}}</div>
-										<label for="name">Tagline</label>
+										<div class="text text-danger">{{$errors->first('tagline')}}</div>
+										<label for="name">About Tagline</label>
 										<input type="text" class="form-control" name="tagline" id="name" value="{{old('tagline')}}" placeholder="Enter Tagline for name">
 									</div>
 									
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('image')}}</div>
-										<label for="name">Image</label>
+										<div class="text text-danger">{{$errors->first('image')}}</div>
+										<label for="name">About Image</label>
 										<input type="file" class="form-control" name="image" id="image">
 									</div>
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('altimage')}}</div>
+										<div class="text text-danger">{{$errors->first('altimage')}}</div>
 
 										<label for="altimage">Alt Image</label>
-										<input type="text" class="form-control" name="altimage" id="altimage" placeholder="Enter image name">
+										<input type="text" class="form-control" name="altimage" value="{{old('altimage')}}" id="altimage" placeholder="Enter image name">
 									</div>
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('description')}}</div>
+										<div class="text text-danger">{{$errors->first('description')}}</div>
 
-										<label for="description">Description</label>
+										<label for="description">About Description</label>
 										<textarea name="description" class="form-control" id="summernote" value="{{old('descripiton')}}"></textarea>
 									</div>
 									
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('pdf')}}</div>
+										<div class="text text-danger">{{$errors->first('pdf')}}</div>
 
 										<label for="pdf">Pdf</label>
 										<input type="file" class="form-control"  name="pdf" id="pdf">
 									</div>
 									<div class="form-group">
-										<div class="alert-warning">{{$errors->first('video')}}</div>
+										<div class="text text-danger">{{$errors->first('video')}}</div>
 										<label for="video">Video link</label>
-										<input type="text" class="form-control" name="video" id="video">
+										<input type="text" class="form-control" name="video" value="{{old('video')}}" id="video">
 									</div>
 
 								</div>
 								<div class="box-footer">
-									<button type="submit" class="btn btn-primary">Add</button>
+									<button type="submit" class="btn btn-primary">Add About</button>
 
 								</div>
 							</form>
+							<div class="box-footer">
+									<a href="{{ URL()->previous() }}"><button class="btn btn-danger pull-right">Cancel</button></a>
+							</div>
 						</div>
 					</div>
 				</div>

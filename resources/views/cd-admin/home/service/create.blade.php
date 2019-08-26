@@ -23,53 +23,59 @@ Services Form
 						<div class="box-header with-border">
 							<h3 class="box-title">Add Services</h3>
 						</div>
+						<div class="box-body">
 						<form role="form" action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
 							@csrf
-							<div class="box-body">
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('name')}}</div>
-									<label for="name">Name</label>
+									<div class="text text-danger">{{$errors->first('name')}}</div>
+									<label for="name">Service Name</label>
 									<input type="text" class="form-control" value="{{old('name')}}"id="name" placeholder="Enter Service name" name="name">
 								</div>
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('image')}}</div>
+									<div class="text text-danger">{{$errors->first('image')}}</div>
 
-									<label for="image">Image</label>
+									<label for="image">Service Image</label>
 									<input type="file" id="image" name="image">
 								</div>
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('altimage')}}</div>
+									<div class="text text-danger">{{$errors->first('altimage')}}</div>
 
 									<label for="altimage">Alt.Image</label>
 
 									<input type="text" class="form-control"  name="altimage" value="{{old('altimage')}}"id="altimage" placeholder="Enter image text">
 								</div>
 								<div class="form-group">
-									<label for="name">Summary</label>
-									<div class="alert-warning">{{$errors->first('summary')}}</div>
+									<div class="text text-danger">{{$errors->first('summary')}}</div>
+
+									<label for="name">Service Summary</label>
 
 									<textarea name="summary" class="form-control" id="summary">{{old('summary')}}</textarea>
 								</div>
 								
 								<div class="form-group">
-									<label for="active">Status</label>	
+									<div class="text text-danger">{{$errors->first('active')}}</div>
+
+
+									<label for="active">Service Status</label>	
 									<select name="active" id="active" class="form-control">
-										<option value="	"disabled>Select Service status</option>
-										<option value="1">Available</option>
-										<option value="0">Unavialble</option>
+										<option value="	">Select Service status</option>
+										<option value="1"{{old('active')=='1'? 'selected' : ''}}>Available</option>
+										<option value="0"{{old('active')=='0'? 'selected' : ''}}>Unavialble</option>
 
-									</select>	
-								</div>
+									</select>
+								</div>	
 
-								
-							</div>
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Submit</button>
-								{{-- <button type="submit" class="btn btn-danger pull-right">Cancel</button> --}}
-								
 							</div>
 						</form>
-					</div>
+						<div class="box-footer">
+							<a href="{{ URL()->previous() }}">
+									<button type="submit" class="btn btn-danger pull-right">Cancel</button>
+							</a>
+						</div>
+						</div>
+					</div>		
 				</div>
 			</div>
 		</section>

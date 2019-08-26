@@ -34,7 +34,6 @@ About Show
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>id</th>
                   <th>Name</th>
                   <th>Tagline</th>
                   <th>Action</th>
@@ -44,7 +43,6 @@ About Show
                 <tbody>
                   @foreach($about as $a)
                 <tr>
-                  <td>{{$a->id}}</td>
                   <td>{{$a->name}}</td>
                   <td>{{$a->tagline}}</td>
                   
@@ -75,7 +73,6 @@ About Show
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>id</th>
                   <th>Name</th>
                   <th>Tagline</th>
                   <th>Action</th>

@@ -1,6 +1,6 @@
 <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('dashboard') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>EG</b></span>
         <!-- logo for regular state and mobile devices -->
@@ -142,7 +142,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('images.create')}}"><i class="fa fa-circle-o"></i>Add New Gallery</a></li>
+                    <li class="active"><a href="{{route('images.create')}}"><i class="fa fa-circle-o"></i>Add New Album</a></li>
+                    <li class="active"><a href="{{route('gallery.create')}}"><i class="fa fa-circle-o"></i>Add New Image</a></li>
                     <li><a href="{{route('images.index')}}"><i class="fa fa-circle-o"></i>View All Gallery</a></li>
                 </ul>
             </li>
@@ -184,8 +185,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('review')}}"><i class="fa fa-circle-o"></i>Add Review</a></li>
-                    <li><a href="{{route('showreview')}}"><i class="fa fa-circle-o"></i>Show Review</a></li>
+                    <li class="active"><a href="{{route('reviews.create')}}"><i class="fa fa-circle-o"></i>Add Review</a></li>
+                    <li><a href="{{route('reviews.index')}}"><i class="fa fa-circle-o"></i>Show Review</a></li>
                 </ul>
             </li>
              <li class="header">About</li>

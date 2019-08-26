@@ -27,10 +27,7 @@ Carousel Show
                   <a href="{{ route('carousels.create') }}"><button class="btn btn-primary">Add</button></a>
                 </div>
                 <!-- /.box-header -->
-                @if(Session::has('deleted'))
-                <div class="alert alert-warning">Data deleted succesfully!</div>
-                {{Session::get("message",'')}}
-                @endif
+                
                 <div class="box-body">
                   <div class="row ">
                     @foreach($carousel as $carousels)
@@ -63,7 +60,7 @@ Carousel Show
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Delete Package</h4>
+          <h4 class="modal-title">Delete Carousel Image</h4>
         </div>
         <div class="modal-body">
           <h2> <p>Are you sure to delete ??</p> </h2>

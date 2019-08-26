@@ -42,15 +42,7 @@ class DashboardController extends Controller
     }
 
     // REVIEW
-    public function review(){
-        return view('cd-admin.home.review.reviewform');
-    }
-    public function reviewshow(){
-        return view('cd-admin.home.review.reviewshow');
-    }
-    public function reviewdetail(){
-        return view('cd-admin.home.review.reviewdetail');
-    }
+    
     // ABOUT
     public function about(){
         return view('cd-admin.home.about.aboutform');

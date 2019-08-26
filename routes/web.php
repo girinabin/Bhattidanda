@@ -24,6 +24,8 @@ Route::post('/services/store','ServiceController@store')->name('services.store')
 Route::patch('/services/{service}','ServiceController@update')->name('services.update');
 Route::get('/services/{service}','ServiceController@show')->name('services.show');
 Route::delete('/services/{service}','ServiceController@destroy')->name('services.destroy');
+Route::patch('/status/{service}','ServiceController@servicestatus')->name('status.service');
+
 
 // packages
 
@@ -38,6 +40,7 @@ Route::get('/packagedetail','DashboardController@packagedetail')->name('packaged
 // Route::get('/imageview','DashboardController@imageview')->name('imageview');
 Route::get('/images','GalleryController@index')->name('images.index');
 Route::get('images/create','GalleryController@create')->name('images.create');
+Route::get('gallery/create/{id?}','GalleryController@gallerycreate')->name('gallery.create');
 Route::post('images/store','GalleryController@store')->name('images.store');
 Route::get('images/{image}','GalleryController@show')->name('images.show');
 Route::delete('/images/{image}','GalleryController@destroy')->name('images.destroy');
@@ -63,9 +66,12 @@ Route::get('/bookingview','DashboardController@bookingview')->name('bookingview'
 
 // review
 
-Route::get('/review','DashboardController@review')->name('review');
-Route::get('/reviewshow','DashboardController@reviewshow')->name('showreview');
-Route::get('/reviewdetail','DashboardController@reviewdetail')->name('reviewdetail');
+Route::get('/reviews','ReviewController@index')->name('reviews.index');
+Route::get('/reviews/create','ReviewController@create')->name('reviews.create');
+Route::get('/reviews/{review}','ReviewController@show')->name('reviews.show');
+Route::post('/reviews/store','ReviewController@store')->name('reviews.store');
+Route::patch('/reviews/{review}','ReviewController@update')->name('reviews.update');
+Route::delete('/reviews/{review}','ReviewController@destroy')->name('reviews.destroy');
 
 // about
 Route::get('/about','AboutController@about')->name('about');
@@ -80,6 +86,8 @@ Route::delete('abouts/{about}','AboutController@destroy')->name('abouts.destroy'
 Route::get('/contactinbox','DashboardController@contactinbox')->name('contactinbox');
 Route::get('/contactview','DashboardController@contactview')->name('contactview');
 Route::get('/contactreply','DashboardController@contactreply')->name('contactreply');
+Route::post('contacts','ContactController@store')->name('contacts.store');
+Route::get('contacts/create','ContactController@create')->name('contacts.create');
 
 // seo
 Route::get('/serviceseo','DashboardController@serviceseo')->name('serviceseo');

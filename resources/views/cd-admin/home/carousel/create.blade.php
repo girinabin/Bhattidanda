@@ -14,10 +14,7 @@ Carousel Form
 			</ol>
 		</section>
 		<!-- Main content -->
-		@if(Session::has('success'))
-                <div class="alert alert-warning">Data deleted succesfully!</div>
-                {{Session::get("message",'')}}
-                @endif
+	
 		<section class="content">
 			<div class="row">
 				<!-- left column -->
@@ -31,29 +28,27 @@ Carousel Form
 							@csrf
 							<div class="box-body">
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('description')}}</div>
+									<div class="text text-danger">{{$errors->first('description')}}</div>
 									<label for="name">Carousel Description</label>
-									<textarea name="description" class="form-control" id="summernote"></textarea>
+									<textarea name="description" value="{{ old('description') }}" class="form-control" id="summernote"></textarea>
 								</div>
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('image')}}</div>
+									<div class="text text-danger">{{$errors->first('image')}}</div>
 									<label for="carouselimage">Carousel Image</label>
 									<input type="file" name="image" id="carouselimage">
 								</div>
 								<div class="form-group">
-									<div class="aler-warning">{{$errors->first('altimage')}}</div>
+									<div class="text text-danger">{{$errors->first('altimage')}}</div>
 									<label for="altimage">Alt Image</label>
-									<input type="text" class="form-control" name="altimage" id="altimage" placeholder="Enter image text">
+									<input type="text" class="form-control" name="altimage" value="{{ old('altimage')}}" id="altimage" placeholder="Enter image text">
 								</div>
 								<div class="form-group">
-									<div class="alert-warning">{{$errors->first('active')}}</div>
+									<div class="text text-danger">{{$errors->first('active')}}</div>
 									<label for="active">Status</label>
 									<div class="radio">
 										<label>
 											<input type="radio" name="active"  value="1">Active<br>
 										</label>
-									</div>
-									<div class="radio">
 										<label>
 											<input type="radio" name="active"  value="0" >Inactive<br>
 										</label>
@@ -61,14 +56,19 @@ Carousel Form
 								</div>
 								
 								<div class="box-footer">
-									<button type="submit" class="btn btn-primary">Add</button>
-									{{-- <button type="submit" class="btn btn-danger pull-right">Cancel</button> --}}
+									<button type="submit" class="btn btn-primary">Add Carousel</button>
+									
 								</div>
-							</form>
+							</div>
+						</form>
+						<div class="box-footer">
+									<a href="{{ URL()->previous() }}"><button class="btn btn-danger pull-right">Cancel</button></a>
 						</div>
+
 					</div>
 				</div>
-			</section>
+			</div>
+		</section>
 		</div>
 	</div>
 	@endsection

@@ -39,7 +39,7 @@ class AboutController extends Controller
         $about['pdf'] = $nabinpdf;
         $about['video'] = $request['video'];
         $about->save();
-        return redirect('/aboutshow');
+        return redirect('/aboutshow')->with('success','Data Added Succesfully!');
     }
     public function aboutupdate($id){    	
         $request = Request()->all();
@@ -60,14 +60,14 @@ class AboutController extends Controller
         $about['description'] = $request['description'];
         $about['video'] = $request['video'];
         $about->save();
-        return redirect()->back();
+        return redirect('aboutdetail/'.$about->id)->with('success','Data Updated Succesfully!');
     }
     public function destroy(Knowabout $about){
         if(file_exists('public/uploads/about/'.$about->image)){
             unlink('public/uploads/about/'.$about->image);
         }
         $about->delete();
-        return redirect()->back();
+        return redirect('aboutshow')->with('error','Data Deleted Succesfully');
 
     }
     public function validateRequest(){
