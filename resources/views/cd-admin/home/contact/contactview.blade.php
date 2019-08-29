@@ -30,26 +30,21 @@ Contact read
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h5>From: help@example.com
-                <span class="mailbox-read-time pull-right">15 Feb. 2016 11:03 PM</span></h5>
+                <h5>From: {{$contact->email}}
+                <span class="mailbox-read-time pull-right">{{$contact->created_at}}</span></h5>
               </div>
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
                 <div class="btn-group">
-                  <button type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" data-container="body" title="Delete">
-                  <i class="fa fa-trash-o"></i></button>
+                  <a href="" data-toggle="modal" data-target="#delete{{$contact->id}}"><button type="button" class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i></button></a>
+                  
                 </div>
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-                <h4>Name:Nabin Giri</h4>
-                <h4>Email:giri.nabin1994@gmail.com</h4>
-                <h4>Message:Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h4>
+                <h4>Name:{{$contact->name}}</h4>
+                <h4>Email:{{$contact->email}}</h4>
+                <h4>Message:{!!$contact->message!!}</h4>
               </div>
               <!-- /.mailbox-read-message -->
             </div>
@@ -58,8 +53,8 @@ Contact read
             <!-- /.box-footer -->
             <div class="box-footer">
               
-              <a href="{{ route('contactreply') }}" class="btn btn-primary pull-right"><i class="fa fa-reply"></i>Reply</a>
-              <a href="#" class="btn btn-primary pull-left"><i class="fa fa-angle-left"></i>Back</a>
+              <a href="{{ route('contactreply',$contact->id) }}" class="btn btn-primary pull-right"><i class="fa fa-reply"></i>Reply</a>
+              <a href="{{URL()->previous()}}" class="btn btn-primary pull-left"><i class="fa fa-angle-left"></i>Back</a>
             </div>
             <!-- /.box-footer -->
           </div>
@@ -69,4 +64,29 @@ Contact read
     </section>
   </div>
 </div>
+{{-- deletemodal --}}
+<div id="delete{{$contact->id}}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+     
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Delete Message</h4>
+        </div>
+        <div class="modal-body">
+          <h2> <p>Are you sure to delete ??</p> </h2>
+        </div>
+        <div class="modal-footer">
+        <form action="{{ route('contacts.destroy',$contact->id) }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger pull-left">Delete</button>
+        </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+    {{-- </form> --}}
+    </div>
+  </div>
+</div>
+
 @endsection

@@ -11,10 +11,10 @@ About Details
 	
 	<section class="content-header">
 		<h1>
-			About
+			About Details
 		</h1>
 		<ol class="breadcrumb">
-			<li><i class="fa fa-dashboard"></i>Dashboard/About/View About/View</li>
+			<li><i class="fa fa-dashboard"></i>Dashboard/About/<a href="{{ route('showabout') }}">Show About</a>/About Details</li>
 		</ol>
 	</section>
 

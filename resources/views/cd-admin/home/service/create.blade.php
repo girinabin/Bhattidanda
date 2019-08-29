@@ -40,7 +40,7 @@ Services Form
 								<div class="form-group">
 									<div class="text text-danger">{{$errors->first('altimage')}}</div>
 
-									<label for="altimage">Alt.Image</label>
+									<label for="altimage">Service Alt Image</label>
 
 									<input type="text" class="form-control"  name="altimage" value="{{old('altimage')}}"id="altimage" placeholder="Enter image text">
 								</div>

@@ -7,10 +7,10 @@ Gallery Form
 	<div class="container-fluid">
 		<section class="content-header">
 			<h1>
-			Gallery
+			Albums
 			</h1>
 			<ol class="breadcrumb">
-				<li><i class="fa fa-dashboard"></i> Dashboard/Add New Gallery</li>
+				<li><i class="fa fa-dashboard"></i> Dashboard/Add New Albums</li>
 			</ol>
 		</section>
 		<!-- Main content -->

@@ -1,13 +1,13 @@
 @extends('cd-admin.home-master')
 @section('page-title')
-Show Service
+Show Services
 @endsection
 @section('content')
 <div class="content-wrapper">
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Show Services
+      Show Servicess
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/Services/View Services</li>
@@ -28,9 +28,9 @@ Show Service
                   <thead>
                     <tr>
                       <th>ServiceName</th>
-                      <th>Image</th>
-                      <th>Status</th>
-                      <th>Action</th>
+                      <th>Service Image</th>
+                      <th>Service Status</th>
+                      <th>Service Action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -53,7 +53,6 @@ Show Service
                           </button>
                           <ul class="dropdown-menu" role="menu">
                           <form action="{{ route('status.service',$services->id) }}" method="post">
-                            <?phpdd('here');?>
                               @method('PATCH')
                               @csrf
                       
@@ -90,9 +89,9 @@ Show Service
                   <tfoot>
                   <tr>
                     <th>ServiceName</th>
-                    <th>Image</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                      <th>Service Image</th>
+                      <th>Service Status</th>
+                      <th>Service Action</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -122,31 +121,31 @@ Show Service
             <div class="box-body">
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('name')}}</div>
-                <label for="name">Name</label>
+                <label for="name">Service Name</label>
                 <input type="text" class="form-control" name="name" value="{{old('name') ?? $services->name}}" id="name" placeholder="Enter Service name">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('image')}}</div>
 
-                <label for="image">Image</label>
+                <label for="image">Service Image</label>
                 <input type="file" id="image" name="image">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('altimage')}}</div>
 
-                <label for="altimage">Alt.Image</label>
+                <label for="altimage">Service Alt Image</label>
                 <input type="text" class="form-control" name="altimage" value="{{old('altimage') ?? $services->altimage}}" id="altimage" placeholder="Enter image text">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('summary')}}</div>
 
-                  <label for="name">Summary</label>
+                  <label for="name">Service Summary</label>
                   <textarea name="summary" class="form-control" name="summary"  id="">{{old('summary') ?? $services->summary }}</textarea>
                 </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('active')}}</div>
 
-                  <label for="active">Status</label>  
+                  <label for="active">Service Status</label>  
                   <select name="active" id="active" class="form-control">
                     <option value=" "disabled>Select Service status</option>
                     <option value="1"{{$services->active=='Available' ? 'selected':''}}>Available</option>
@@ -175,7 +174,7 @@ Show Service
      
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Delete Services</h4>
+          <h4 class="modal-title">Delete Service</h4>
         </div>
         <div class="modal-body">
           <h2> <p>Are you sure to delete {{$services->name}}??</p> </h2>
@@ -184,7 +183,7 @@ Show Service
           <form action="{{ route('services.destroy',$services->id) }}" method="POST">
       @method('DELETE')
       @csrf
-          <button type="submit" class="btn btn-warning pull-left">Delete</button>
+          <button type="submit" class="btn btn-danger pull-left">Delete</button>
         </form>
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -192,23 +191,6 @@ Show Service
     </div>
   </div>
 </div>                           
-{{-- <div id="myModal{{$services->id}}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Delete Services</h4>
-      </div>
-      <div class="modal-body">
-        <h2> <p>Are you sure??</p> </h2>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Delete</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> --}}
+
 @endforeach
 @endsection

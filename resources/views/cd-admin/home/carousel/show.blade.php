@@ -1,16 +1,16 @@
 @extends('cd-admin.home-master')
 @section('page-title')
-Carousel Show
+Carousel Details
 @endsection
 @section('content')
 <div class="content-wrapper">
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Carousel Images
+      Carousel Images Details
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Carousel/View All Carousel/View</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Carousel/<a href="{{ route('carousels.index') }}">View All Carousel</a>/Carousel Details</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -30,7 +30,7 @@ Carousel Show
                 <div class="box-body">
                   <div class="row ">
                     <div class="col-md-12 rowedit">
-                      <img src="{{asset('public/uploads/carousel/'.$carousel->image)}}" style="margin-left: 375px;" alt="" height="500px" width="500px">
+                      <img src="{{asset('public/uploads/carousel/'.$carousel->image)}}" style="margin-left: 375px;" alt="" height="350px" width="350px">
                       <p>{!!$carousel->description!!}</p>
 
                           <div class="btn-group">
@@ -57,7 +57,7 @@ Carousel Show
                         
                         <div>
 
-                             {{-- <button class="btn btn-info pull-right  buttonedit ">{{$carousel->active}}</button> --}}
+                             
                             <a href="" data-toggle="modal" data-target="#delete{{$carousel->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: 3px;">Delete</button></a>
                              
                         </div>
@@ -85,10 +85,10 @@ Carousel Show
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Delete image</h4>
+          <h4 class="modal-title">Delete Carousel image</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure??</p> </h2>
+          <h2> <p>Are you sure to delete ??</p> </h2>
         </div>
         <div class="modal-footer">
           <form action="{{ route('carousels.destroy',$carousel->id) }}" method="POST">
@@ -96,6 +96,8 @@ Carousel Show
             @csrf
           <button type="submit" class="btn btn-danger pull-left">Delete</button>
           </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>

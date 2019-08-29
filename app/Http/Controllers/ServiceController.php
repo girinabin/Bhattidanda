@@ -1,6 +1,5 @@
 <?php
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Service;
 use Illuminate\Support\Facades\DB;
@@ -42,12 +41,14 @@ class ServiceController extends Controller
         $request = Request()->all();
         if(isset($request['image']))
         {
-            if(file_exists('public/uploads/service/'.$service->image))
-            {
-                unlink('public/uploads/service/'.$service->image);
+            
                 $a = [];
                 $a['updated_at'] = Carbon::now();
                 $data = $this->validateRequest();
+                if(file_exists('public/uploads/service/'.$service->image))
+                {
+                    unlink('public/uploads/service/'.$service->image);
+                }
                 $file = $request['image'];
                 $fileName = time().$file->getClientOriginalName();
                 $destination = public_path('uploads/service');
@@ -55,7 +56,7 @@ class ServiceController extends Controller
                 $a['image'] = $fileName;
                 $final = array_merge($data,$a);
                 DB::table('services')->where('id',$service->id)->update($final);  
-             }
+             
         }
         else
         {
@@ -75,9 +76,10 @@ class ServiceController extends Controller
     public function show(Service $service){
         return view('cd-admin.home.service.show',compact('service'));
     }
+
     public function destroy(Service $service){
-        if(file_exists('public/uploads/service'.$service->image)){
-            unlink('public/uploads/service'.$service->image);
+        if(file_exists('public/uploads/service/'.$service->image)){
+            unlink('public/uploads/service/'.$service->image);
         }
         $service->delete();
         return redirect('/services')->with('error','Data Deleted Successfully');
@@ -96,6 +98,7 @@ class ServiceController extends Controller
         }
         return redirect()->back();
     }
+
     private function validateRequest(){
     	return request()->validate([
             'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
@@ -103,9 +106,10 @@ class ServiceController extends Controller
             'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
     		'summary'=>'required|regex:/^[ A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
     		'active'=>'required',
-    		'image'=>'required|image'
+    		'image'=>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG'
     	]);
     }
+
     private function uvalidateRequest(){
         return request()->validate([
             'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
@@ -113,7 +117,7 @@ class ServiceController extends Controller
             'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
             'summary'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
             'active'=>'required',
-            'image'=>'image'
+            'image'=>'mimes:png,jpg,jpeg,JPG,JPEG,PNG'
         ]);
     }
    

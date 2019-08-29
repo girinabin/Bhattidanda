@@ -170,16 +170,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script>
       $(document).ready(function() {
-      $('#summernote').summernote();
+      $('.summernote').summernote();
 
         });
     </script>
-    <script>
+   {{--  <script>
       $(document).ready(function() {
       $('#summernote1').summernote();
 
         });
-    </script>
+    </script> --}}
 </script>
 <!-- InputMask -->
 <script src="{{url('public/cd-admin/creatu/plugins/input-mask/jquery.inputmask.js')}}"></script>

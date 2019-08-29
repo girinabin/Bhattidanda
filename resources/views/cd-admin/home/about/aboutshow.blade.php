@@ -23,7 +23,7 @@ About Show
 							<div class="box box-primary">
 								<div class="box-header with-border">
 									<h3 class="box-title"></h3>
-                <a href="{{ route('about') }}"><button class="btn btn-primary">Add</button></a>
+                <a href="{{ route('about') }}"><button class="btn btn-primary">Add About</button></a>
 
 									<div>
             <div class="box-header">
@@ -34,9 +34,9 @@ About Show
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Name</th>
-                  <th>Tagline</th>
-                  <th>Action</th>
+                  <th>About Name</th>
+                  <th>About Tagline</th>
+                  <th>About Action</th>
                   
                 </tr>
                 </thead>
@@ -73,9 +73,9 @@ About Show
                 </tbody>
                 <tfoot>
                 <tr>
-                  <th>Name</th>
-                  <th>Tagline</th>
-                  <th>Action</th>
+                  <th>About Name</th>
+                  <th>About Tagline</th>
+                  <th>About Action</th>
                 </tr>
                 </tfoot>
               </table>
@@ -114,34 +114,47 @@ About Show
               @csrf
                 <div class="box-body">
                   <div class="form-group">
-                    <label for="name">Name</label>
+                    <div class="text text-danger">{{$errors->first('name')}}</div>
+                    <label for="name">About Name</label>
                     <input type="text" class="form-control" name="name"  value="{{$a->name}}">
                   </div>
                   <div class="form-group">
-                    <label for="name">Tagline</label>
+                    <div class="text text-danger">{{$errors->first('tagline')}}</div>
+
+                    <label for="name">About Tagline</label>
                     <input type="text" class="form-control" name="tagline" value="{{$a->tagline}}">
                   </div>
                   
                   <div class="form-group">
-                    <label for="name">Image</label>
+                    <div class="text text-danger">{{$errors->first('image')}}</div>
+
+                    <label for="name">About Image</label>
                     <input type="file" class="form-control" name="image"  >
                   </div>
                   <div class="form-group">
+                    <div class="text text-danger">{{$errors->first('altimage')}}</div>
+
                     <label for="altimage">Alt Image</label>
                     <input type="text" class="form-control"  name="altimage" value="{{$a->altimage}}" >
                   </div>
                   <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea name="description" class="form-control" style="height=100px;" id="summernote">{!! $a->description !!}</textarea>
+                    <div class="text text-danger">{{$errors->first('description')}}</div>
+
+                    <label for="description">About Description</label>
+                    <textarea name="description" class="form-control summernote" style="height=100px;" >{!! $a->description !!}</textarea>
                   </div>
                 
                   <div class="form-group">
+                    <div class="text text-danger">{{$errors->first('pdf')}}</div>
+
                     <label for="pdf">Pdf</label>
                     <input type="file" class="form-control" name="pdf">
                   </div>
                   <div class="form-group">
+                    <div class="text text-danger">{{$errors->first('video')}}</div>
+
                     <label for="video">Video link</label>
-                    <input type="text" class="form-control" name="video" value="{{$a->video}}">
+                    <input type="url" class="form-control" name="video" value="{{$a->video}}">
                   </div>
 
                 </div>
@@ -171,7 +184,7 @@ About Show
         <h4 class="modal-title">Delete About</h4>
       </div>
       <div class="modal-body">
-        <h2> <p>Are you sure??</p> </h2>
+        <h2> <p>Are you sure {{$a->name}}??</p> </h2>
       </div>
       <div class="modal-footer">
         <form action="{{ route('abouts.destroy',$a->id) }}" method="POST">

@@ -15,8 +15,10 @@ class GalleryController extends Controller
     }
 
     public function gallerycreate($id = null){
-        $album = Album::all();
-        return view('cd-admin.home.gallery.imagecreate',compact('album','id'));
+
+
+        $album = Album::where('id',$id)->get()->first();
+        return view('cd-admin.home.gallery.imagecreate',compact('album'));
     }
 
     public function index(){
@@ -97,14 +99,13 @@ class GalleryController extends Controller
     	return Request()->validate([
     		'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
     		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'image' =>'required|image'
+    		'image' =>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG'
     	]);
     }
     private function validateRequest1(){
     	return Request()->validate([
     		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'image' => 'required',
-    		'image.*' =>'image',
+    		'image' => 'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
     		'albumselect' =>'required'
     	]);
     }

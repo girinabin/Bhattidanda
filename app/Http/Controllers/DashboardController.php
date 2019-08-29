@@ -15,15 +15,6 @@ class DashboardController extends Controller
     
 
     // PACKAGE
-    public function package(){
-        return view('cd-admin.home.package.packageform');
-    }
-    public function showpackage(){
-        return view('cd-admin.home.package.packageshow');
-    }
-     public function packagedetail(){
-        return view('cd-admin.home.package.packagedetail');
-    }
    
     // GALLERY
 
@@ -55,15 +46,7 @@ class DashboardController extends Controller
     }
 
     // CONTACT
-    public function contactinbox(){
-        return view('cd-admin.home.contact.contactinbox');
-    }
-    public function contactview(){
-        return view('cd-admin.home.contact.contactview');
-    }
-    public function contactreply(){
-        return view('cd-admin.home.contact.contactreply');
-    }
+  
 
 // SEO
     public function serviceseo(){

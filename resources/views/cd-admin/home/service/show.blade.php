@@ -20,8 +20,8 @@ Service Detail
 			<div class="row">
 				<div class="col-md-3"></div>
 				<div class="col-md-6 text-center textedit">
-					<img src="{{asset('public/uploads/service/'.$service->image)}}" alt="" class="rounded-circle" height="25%" width="50%">
-					<h2><noscript>{{e($service->name)}}</noscript></h2>
+					<img src="{{asset('public/uploads/service/'.$service->image)}}" alt="" class="rounded-circle" height="350px" width="350px">
+					<h2>{!!$service->name!!}</h2>
 				</div>
 				<div class="col-md-3"></div>
 				
@@ -31,13 +31,19 @@ Service Detail
 				<div class="col-md-12">
 					<p>{!!$service->summary!!}</p>
 					<div class="box-button">
-						<button class="btn btn-info">{{($service->active)}}</button>
+						@if($service->active == 'Available')
+						<button class="btn btn-success">{{($service->active)}}</button>
+						@else
+						<button class="btn btn-danger">{{($service->active)}}</button>
+						@endif
+
 					<form action="{{route('services.destroy',$service->id) }}" method="POST">
 						@method('DELETE')
 						@csrf
 
 						<a href="" data-toggle="modal" data-target="#delete{{$service->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: 3px;">Delete</button></a>
 					</form>
+
 					</div>
 					
  
@@ -54,10 +60,10 @@ Service Detail
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Delete services</h4>
+          <h4 class="modal-title">Delete service</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure??</p> </h2>
+          <h2> <p>Are you sure to delete {{$service->name}}??</p> </h2>
         </div>
         <div class="modal-footer">
           <form action="{{ route('services.destroy',$service->id) }}" method="POST">
@@ -65,6 +71,8 @@ Service Detail
             @csrf
           <button type="submit" class="btn btn-danger pull-left">Delete</button>
           </form>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
         </div>
       </div>
     </div>

@@ -7,10 +7,10 @@ Carousel Show
   <div class="container">
     <section class="content-header">
       <h1>
-      Carousel
+      Show Carousel
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/View All Gallery</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/View All Carousel</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -24,7 +24,7 @@ Carousel Show
               <div>
                 <div class="box-header">
                   <h3 class="box-title"></h3>
-                  <a href="{{ route('carousels.create') }}"><button class="btn btn-primary">Add</button></a>
+                  <a href="{{ route('carousels.create') }}"><button class="btn btn-primary">Add Carousel</button></a>
                 </div>
                 <!-- /.box-header -->
                 

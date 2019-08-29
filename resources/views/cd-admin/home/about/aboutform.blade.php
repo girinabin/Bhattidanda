@@ -28,7 +28,7 @@ About Form
 								@csrf
 								<div class="box-body">
 									<div class="form-group">
-										<div class="text text-warning">{{$errors->first('name')}}</div>
+										<div class="text text-danger">{{$errors->first('name')}}</div>
 										<label for="name">About Name</label>
 										<input type="text" class="form-control" name="name" value="{{old('name')}}"id="name" placeholder="Enter Name">
 									</div>
@@ -53,7 +53,7 @@ About Form
 										<div class="text text-danger">{{$errors->first('description')}}</div>
 
 										<label for="description">About Description</label>
-										<textarea name="description" class="form-control" id="summernote" value="{{old('descripiton')}}"></textarea>
+										<textarea name="description" class="form-control summernote"  value="{{old('descripiton')}}"></textarea>
 									</div>
 									
 									<div class="form-group">
@@ -65,7 +65,7 @@ About Form
 									<div class="form-group">
 										<div class="text text-danger">{{$errors->first('video')}}</div>
 										<label for="video">Video link</label>
-										<input type="text" class="form-control" name="video" value="{{old('video')}}" id="video">
+										<input type="url" class="form-control" name="video" value="{{old('video')}}" id="video">
 									</div>
 
 								</div>

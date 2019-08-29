@@ -39,18 +39,17 @@ Carousel Form
 								</div>
 								<div class="form-group">
 									<div class="text text-danger">{{$errors->first('altimage')}}</div>
-									<label for="altimage">Alt Image</label>
+									<label for="altimage">Carousel Alt Image</label>
 									<input type="text" class="form-control" name="altimage" value="{{ old('altimage')}}" id="altimage" placeholder="Enter image text">
 								</div>
 								<div class="form-group">
 									<div class="text text-danger">{{$errors->first('active')}}</div>
-									<label for="active">Status</label>
+									<label for="active">Carousel Status</label>
 									<div class="radio">
 										<label>
-											<input type="radio" name="active"  value="1">Active<br>
-										</label>
-										<label>
-											<input type="radio" name="active"  value="0" >Inactive<br>
+											<input type="radio" name="active"  value="1"{{old('active') == '1'?'checked':''}}>Active<br>
+										
+											<input type="radio" name="active"  value="0"{{old('active') == '0' ? 'checked' : ''}} >Inactive<br>
 										</label>
 									</div>
 								</div>

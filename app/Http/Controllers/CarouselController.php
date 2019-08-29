@@ -66,11 +66,9 @@ class CarouselController extends Controller
 
     private function validateRequest(){
     	 return Request()->validate([
-            // dd();
     		'description'=>'required',
-    		'image'=>'required|max:25000',
-    		'image.*'=>'image',
-    		'altimage'=>'required',
+    		'image'=>'required|mimes:png,jpg,jpeg,PNG,JPG,JPEG',
+            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
     		'active' => 'required'
     	]);
 

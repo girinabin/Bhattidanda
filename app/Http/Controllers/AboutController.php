@@ -65,16 +65,21 @@ class AboutController extends Controller
     public function destroy(Knowabout $about){
         if(file_exists('public/uploads/about/'.$about->image)){
             unlink('public/uploads/about/'.$about->image);
+            if(file_exists('public/uploads/about/'.$about->pdf)){
+            unlink('public/uploads/about/'.$about->pdf);
         }
+        }
+        
+
         $about->delete();
         return redirect('aboutshow')->with('error','Data Deleted Succesfully');
 
     }
     public function validateRequest(){
         return Request()->validate([
-            'name' => 'required|max:255',
-            'tagline' => 'required|max:255',
-            'altimage' => 'required|max:255',
+            'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'tagline' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
             'description' => 'required',
             'video' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg,JPEG,JPG,PNG',
@@ -83,13 +88,13 @@ class AboutController extends Controller
     }
     public function uvalidateRequest(){
         return Request()->validate([
-            'name' => 'required|max:255',
-            'tagline' => 'required|max:255',
-            'altimage' => 'required|max:255',
+            'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'tagline' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
             'description' => 'required',
             'video' => 'required',
-            'image' => 'file|image',
-            'pdf' => 'file|mimes:pdf',
+            'image' => 'mimes:jpeg,png,jpg,JPEG,JPG,PNG',
+            'pdf' => 'mimes:pdf',
         ]);  
     }
 

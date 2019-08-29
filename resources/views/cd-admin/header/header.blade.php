@@ -127,8 +127,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('addpackage')}}"><i class="fa fa-circle-o"></i>Add New Packages</a></li>
-                <li><a href="{{route('showpackage')}}"><i class="fa fa-circle-o"></i>View All Packages </a></li>
+                    <li class="active"><a href="{{route('packages.create')}}"><i class="fa fa-circle-o"></i>Add New Packages</a></li>
+                <li><a href="{{route('packages.index')}}"><i class="fa fa-circle-o"></i>View All Packages </a></li>
                 </ul>
             </li>
 
@@ -213,6 +213,7 @@
                 </a>
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{route('contactinbox')}}"><i class="fa fa-circle-o"></i>inbox</a></li>
+                    <li class="active"><a href="{{route('messagesent')}}"><i class="fa fa-circle-o"></i>sent message</a></li>
                 </ul>
             </li>
 
