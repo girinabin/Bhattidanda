@@ -77,13 +77,7 @@ class ServiceController extends Controller
         return view('cd-admin.home.service.show',compact('service'));
     }
 
-    public function destroy(Service $service){
-        if(file_exists('public/uploads/service/'.$service->image)){
-            unlink('public/uploads/service/'.$service->image);
-        }
-        $service->delete();
-        return redirect('/services')->with('error','Data Deleted Successfully');
-    }
+   
 
     public function servicestatus(Service $service){
         if($service->active == 'Available'){

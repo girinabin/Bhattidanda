@@ -34,6 +34,9 @@ Route::get('/packages/{package}-{slug}','PackageController@packageshow')->name('
 Route::get('/packages','PackageController@packageindex')->name('packages.index');
 Route::post('/packages/store','PackageController@packagestore')->name('packages.store');
 Route::post('/status/{package}','PackageController@packagestatus')->name('status.package');
+Route::post('/packages/{package}','PackageController@destroy')->name('packages.destroy');
+Route::post('booking/{book}-{slug}','PackageController@packagebook')->name('packages.book');
+
 
 
 

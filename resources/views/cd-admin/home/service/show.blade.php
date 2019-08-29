@@ -37,12 +37,9 @@ Service Detail
 						<button class="btn btn-danger">{{($service->active)}}</button>
 						@endif
 
-					<form action="{{route('services.destroy',$service->id) }}" method="POST">
-						@method('DELETE')
-						@csrf
+					
 
 						<a href="" data-toggle="modal" data-target="#delete{{$service->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: 3px;">Delete</button></a>
-					</form>
 
 					</div>
 					
