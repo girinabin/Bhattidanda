@@ -15,7 +15,6 @@ class PackageController extends Controller
         return view('cd-admin.home.package.index',compact('packages'));
    	}
     public function packageshow(Package $package){
-    // {   dd($package);
         return view('cd-admin.home.package.show',compact('package'));
     }
      public function packagecreate()
@@ -24,6 +23,7 @@ class PackageController extends Controller
     }
     public function packagestore()
     {
+        // dd($request = Request()->all());
     	$request = Request()->all();
     	$data = $this->requestValidate();
     	$a = [];
@@ -41,13 +41,46 @@ class PackageController extends Controller
     	DB::table('packages')->insert($final);
         
 
-       return redirect()->back();
+       return redirect('/packages')->with('success','Package Added Successfully');
 
 
 
     }
+    public function packagesupdate(Package $package){
+        // $request = Request()->all();
+        if(isset($request['image'])){
+            $a = [];
+            $a['updated_at'] = Carbon::now();
+            $data = $this->uvalidateRequest();
+            if(file_exists('public/uploads/package/'.$package->image)){
+                unlink('public/uploads/package/'.$package->image);
+            }
+            $file = $request['image'];
+            $fileName = time().$file->getClientOriginalName();
+            $destination = public_path('public/uploads/package');
+            $file->move($destination,$fileName);
+            $a['image'] = $fileName;
+            $final = array_merge($data,$a);
+            DB::table('packages')->where('id',$package->id)->update($final);
 
-      public function packagestatus(Package $package){
+        }
+         else
+        {
+
+        $a = [];
+        $a['updated_at'] = Carbon::now();
+        $data = $this->uvalidateRequest();
+        $final = array_merge($data,$a);
+        DB::table('packages')->where('id',$package->id)->update($final);  
+
+        }
+       
+    return redirect('/packages/'.$package->id.$package->slug)->with('success','Data Updated Successfully');
+
+    }
+
+
+    public function packagestatus(Package $package){
         if($package->active == 'Available'){
             $package->update([
                 'active' => 0
@@ -70,35 +103,32 @@ class PackageController extends Controller
     }
     
 
-        
-    public function packagebook(){
-        $request = Request()->all();
-        $book = new Booking();
-        $book['name'] = $request['name'];
-        $book['email'] = $request['email'];
-        $book['age'] = $request['age'];
-        $book['location'] = $request['location'];
-        $book['contact'] = $request['contact'];
-        $book['message'] = $request['message'];
-        $book['slug'] = $request['slug'];
-        $book->save();
-        return redirect();
-
-    }
-        
-
 
     
     public function requestValidate(){
     	$test =  request()->validate([
+            
+            
     		'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
     		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'description' => 'required',
+            'description' => array('Regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/'),
+    		
     		'active' =>'required',
     		'image' => 'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
+        
 
     	]);
     	return $test;
+    }
+    private function uvalidateRequest(){
+        return request()->validate([
+            'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            
+            'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'description'=>'required',
+            'active'=>'required',
+            'image'=>'mimes:png,jpg,jpeg,JPG,JPEG,PNG'
+        ]);
     }
    
 }

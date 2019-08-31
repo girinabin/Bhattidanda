@@ -35,7 +35,8 @@ Route::get('/packages','PackageController@packageindex')->name('packages.index')
 Route::post('/packages/store','PackageController@packagestore')->name('packages.store');
 Route::post('/status/{package}','PackageController@packagestatus')->name('status.package');
 Route::post('/packages/{package}','PackageController@destroy')->name('packages.destroy');
-Route::post('booking/{book}-{slug}','PackageController@packagebook')->name('packages.book');
+Route::post('packagesupdate/{package}','PackageController@packagesupdate')->name('packages.update');
+
 
 
 
@@ -66,8 +67,23 @@ Route::patch('/status/{stat}','CarouselController@status')->name('status.stat');
 
 // booking
 
-Route::get('/bookinginbox','DashboardController@bookinginbox')->name('bookinginbox');
-Route::get('/bookingview','DashboardController@bookingview')->name('bookingview');
+
+Route::post('bookings/store','BookingController@packagebook')->name('packages.book');
+Route::get('bookingscreate/{slug}','BookingController@bookingcreate')->name('booking.create');
+Route::get('bookings/inbox','BookingController@bookinginbox')->name('bookings.inbox');
+Route::get('bookingsinboxshow/{booking}','BookingController@bookinginboxshow')->name('bookings.inboxshow');
+Route::post('bookingsdelete/{booking}','BookingController@binboxdestroy')->name('binbox.destroy');
+Route::get('bookingsreplycreate/{booking}','BookingController@breplycreate')->name('breply.create');
+Route::post('bookingsrply/{contact}','BookingController@mailreply')->name('bookings.mailreply');
+Route::get('breplyinbox/','BookingController@breplyinbox')->name('breply.inbox');
+Route::post('breplydestroy/{booking}','BookingController@breplydestroy')->name('breply.destroy');
+Route::get('breplyview/{booking}','BookingController@breplyview')->name('breply.view');
+
+
+
+
+
+
 
 // review
 
@@ -102,9 +118,11 @@ Route::post('/msgreply/{message}','ContactController@sentdestroy')->name('messag
 Route::get('contacts/create','ContactController@create')->name('contacts.create');
 
 // seo
-Route::get('/serviceseo','DashboardController@serviceseo')->name('serviceseo');
-Route::get('/packageseo','DashboardController@packageseo')->name('packageseo');
-Route::get('/aboutseo','DashboardController@aboutseo')->name('aboutseo');
-Route::get('/viewseo','DashboardController@viewseo')->name('viewseo');
+// Route::get('/serviceseo','SeoController@serviceseo')->name('serviceseo');
+// Route::get('/packageseo','SeoController@packageseo')->name('packageseo');
+Route::get('/seopages','SeoController@seopages')->name('seo.pages');
+Route::get('/viewseo','SeoController@viewseo')->name('viewseo');
+Route::post('/seostore','SeoController@seostore')->name('seo.store');
+Route::post('/seoupdate/{seo}','SeoController@seoupdate')->name('seo.update');
 
 

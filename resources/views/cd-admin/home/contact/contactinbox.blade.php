@@ -55,8 +55,8 @@ Contact inbox
                         @endif
 
                       
-                      <td class="mailbox-name">{{$contact->email}}</td>
-                      <td class="mailbox-subject"><b>{{$contact->name}}</b>{!!str_limit($contact->message,$limits='20')!!}
+                      <td class="mailbox-name"><b>{{$contact->email}}</b></td>
+                      <td class="mailbox-subject">{!!str_limit($contact->message,$limits='20')!!}
                       </td>
                       
                       <td class="mailbox-date">{{$contact->created_at}}</td>

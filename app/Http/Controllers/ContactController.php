@@ -87,11 +87,7 @@ class ContactController extends Controller
         $a['contact_id'] = $id;
         $final = array_merge($a,$data);
         DB::table('reply_contacts')->insert($final);
-        
-
-       
         Mail::to($data['emailto'])->send(new ContactFormMail($data));
-
         return redirect('contactinbox')->with('success','Message replied successfully!!');
 
         

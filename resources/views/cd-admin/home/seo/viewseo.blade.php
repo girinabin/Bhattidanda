@@ -19,7 +19,7 @@ View Seo
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title"></h3>
+              <h3 class="box-title"><a href="{{ route('seo.pages') }}"><button class="btn btn-primary">Add Seo</button></a></h3>
               <div class="box-tools">
                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -33,52 +33,27 @@ View Seo
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover">
                 <tr>
-                  <th>ID</th>
                   <th>Seo Group</th>
                   <th>Seo Title</th>
                   <th>Keywords</th>
                   <th>Action</th>
                 </tr>
                 <tr>
-                  <td>1</td>
-                  <td><span class="label label-warning">Service</span></td>
-                  <td>nepal free service</td>
-                  <td>nepal,kathmandu</td>
+                  @foreach($seos as $seo)
+                  <td><span class="label label-primary">{{$seo->page}}</span></td>
+                  <td>{{$seo->seotitle}}</td>
+                  <td>{{$seo->seokeyword}}</td>
                   <td>
                     <div class="btn-group">
-                      <a href=""  data-toggle="modal" data-target="#myModalservice">
-                      <i class="fa fa-edit"></i> Edit</a>
-                      <a href="" data-toggle="modal" data-target="#myModalserviceview"><i class="fa fa-eye"></i>View</a>
+                      <a href=""  data-toggle="modal" data-target="#edit{{$seo->id}}">
+                       <button class="btn btn-warning"><i class="fa fa-edit"></i></button></a>
+                      <a href="" data-toggle="modal" data-target="#view{{$seo->id}}"><button class="btn btn-success"><i class="fa fa-eye"></i></button></a>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td>2</td>
-                  <td><span class="label label-info">Package</span></td>
-                  <td>nepal free Package</td>
-                  <td>Pokhara,kathmandu</td>
-                  <td>
-                    <div class="btn-group">
-                      <a href=""  data-toggle="modal" data-target="#myModalpackage">
-                      <i class="fa fa-edit"></i> Edit</a>
-                      <a href="" data-toggle="modal" data-target="#myModalpackageview"><i class="fa fa-eye"></i>View</a>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td><span class="label label-primary">About</span></td>
-                  <td>aboout fullmaya</td>
-                  <td>Pokhara,kathmandu</td>
-                  <td>
-                    <div class="btn-group">
-                      <a href=""  data-toggle="modal" data-target="#myModalabout">
-                      <i class="fa fa-edit"></i> Edit</a>
-                      <a href="" data-toggle="modal" data-target="#myModalaboutview"><i class="fa fa-eye"></i>View</a>
-                    </div>
-                  </td>
-                </td>
-              </tr>
+                  @endforeach
+
+               
             </table>
           </div>
           <!-- /.box-body -->
@@ -87,61 +62,86 @@ View Seo
     </section>
   </div>
 </div>
-<!-- edit modal for service -->
-<div id="myModalservice" class="modal fade" role="dialog">
+<!-- edit modal for seo -->
+@foreach($seos as $seo)
+<div id="edit{{$seo->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Service Seo</h4>
+        <h4 class="modal-title">Edit {{$seo->seotitle}} Seo</h4>
       </div>
       <div class="modal-body">
         <div class="box box-primary">
-          <form role="form">
-            <div class="box-body">
-              <div class="form-group">
-                <label for="seotitle">Seo Title</label>
-                <input type="text" class="form-control" id="seotitle" placeholder="Enter Seo title">
-              </div>
-              <div class="form-group">
-                <label for="seokeyword">Seo Keyword</label>
-                <input type="text" class="form-control" id="seokeyword" placeholder="Enter Seo keyword">
-              </div>
-              <div class="form-group">
-                <label for="name">Seo Description</label>
-                <textarea name="seodescription" class="form-control" id="summernote"></textarea>
-              </div>
-              
-              
+          <form role="form" action="{{ route('seo.update',$seo->id) }}" method="POST">
+            @csrf
+           <div class="box-body">
+                <div class="form-group">
+                  <div class="text text-danger">{{$errors->first('page')}}</div>
+
+
+                  <label for="page">Seo Pages</label> 
+                  <select name="page" id="page" class="form-control">
+                    <option value=" ">Select Seo Page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='about'?'selected':''}}>About page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='package'?'selected':''}}>Package page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='service'?'selected':''}}>Service Page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='gallery'?'selected':''}}>Gallery Page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='booking'?'selected':''}}>Booking Page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='review'?'selected':''}}>Review Page</option>
+                    <option value="{{$seo->page}}"{{$seo->page=='contact'?'selected':''}}>Contact Page</option>
+                    
+
+                  </select>
+                </div>
+                <div class="form-group">
+                  <div class="text text-danger">{{$errors->first('seotitle')}}</div>
+                  <label for="seotitle">Seo Title</label>
+                  <input type="text" class="form-control" name="seotitle" id="seotitle" value="{{$seo->seotitle}}" placeholder="Enter Seo title : not more than 60 character">
+                </div>
+                <div class="form-group">
+                  <div class="text text-danger">{{$errors->first('seokeyword')}}</div>
+                  <label for="seokeyword">Seo Keyword</label>
+                  <input type="text" class="form-control" name="seokeyword" id="seokeyword" value="{{$seo->seokeyword}}" placeholder="Enter Seo keyword : not more than 60 character">
+                </div>
+                <div class="form-group">
+                  <div class="text text-danger">{{$errors->first('seodescription')}}</div>
+                  <label for="name">Seo Description</label>
+                  <textarea style="margin: 5px;" name="seodescription" class="form-control summernote" placeholder="Enter Seo description : between 50-160 character">{{$seo->seodescription}}</textarea>
+                </div>
+                <div class="modal-footer">
+                <button type="submit" class="btn btn-primary pull-left" >Update</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+               </div>
+                
+                
             </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Update</button>
               
-            </div>
           </form>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      
     </div>
   </div>
 </div>
-{{-- view modal for service --}}
-<div id="myModalserviceview" class="modal fade" role="dialog">
+@endforeach
+{{-- view modal for seo --}}
+@foreach($seos as $seo)
+<div id="view{{$seo->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View Service Seo</h4>
+        <h4 class="modal-title">View {{$seo->seotitle}} Seo</h4>
       </div>
       <div class="modal-body">
         <div class="box box-primary">
-          <h3>Seo title:</h3>
-          <h3>Seo keyword:</h3>
-          <h3>Seo Description:</h3>
+          <strong>Seo title:</strong><br>{{$seo->seotitle}}<br>
+          <strong>Seo keyword:</strong><br>{{$seo->seokeyword}}<br>
+          <strong>Seo Description:</strong>{!!$seo->seodescription!!}<br>
         </div>
       </div>
       <div class="modal-footer">
@@ -149,131 +149,7 @@ View Seo
       </div>
     </div>
   </div>
-</div>
-{{-- edit modal for package --}}
-<div id="myModalpackage" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit Package Seo</h4>
-      </div>
-      <div class="modal-body">
-        <div class="box box-primary">
-          <form role="form">
-            <div class="box-body">
-              <div class="form-group">
-                <label for="seotitle">Seo Title</label>
-                <input type="text" class="form-control" id="seotitle" placeholder="Enter Seo title">
-              </div>
-              <div class="form-group">
-                <label for="seokeyword">Seo Keyword</label>
-                <input type="text" class="form-control" id="seokeyword" placeholder="Enter Seo keyword">
-              </div>
-              <div class="form-group">
-                <label for="name">Seo Description</label>
-                <textarea name="seodescription" class="form-control" id="summernote"></textarea>
-              </div>
-              
-              
-            </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Update</button>
-              
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-{{-- view modal for package --}}
-<div id="myModalpackageview" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View Package Seo</h4>
-      </div>
-      <div class="modal-body">
-        <div class="box box-primary">
-          <h3>Seo title:</h3>
-          <h3>Seo keyword:</h3>
-          <h3>Seo Description:</h3>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-{{-- edit model for about--}}
-<div id="myModalabout" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit About Seo</h4>
-      </div>
-      <div class="modal-body">
-        <div class="box box-primary">
-          <form role="form">
-            <div class="box-body">
-              <div class="form-group">
-                <label for="seotitle">Seo Title</label>
-                <input type="text" class="form-control" id="seotitle" placeholder="Enter Seo title">
-              </div>
-              <div class="form-group">
-                <label for="seokeyword">Seo Keyword</label>
-                <input type="text" class="form-control" id="seokeyword" placeholder="Enter Seo keyword">
-              </div>
-              <div class="form-group">
-                <label for="name">Seo Description</label>
-                <textarea name="seodescription" class="form-control" id="summernote"></textarea>
-              </div>
-              
-              
-            </div>
-            <div class="box-footer">
-              <button type="submit" class="btn btn-primary">Update</button>
-              
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-{{-- view modal for about --}}
-<div id="myModalserviceabout" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View About Seo</h4>
-      </div>
-      <div class="modal-body">
-        <div class="box box-primary">
-          <h3>Seo title:</h3>
-          <h3>Seo keyword:</h3>
-          <h3>Seo Description:</h3>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+ </div> 
+@endforeach
+
 @endsection

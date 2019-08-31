@@ -93,9 +93,9 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('serviceseo') }}"><i class="fa fa-circle-o"></i>Services</a></li>
-                    <li><a href="{{ route('packageseo') }}"><i class="fa fa-circle-o"></i>Package</a></li>
-                    <li><a href="{{ route('aboutseo') }}"><i class="fa fa-circle-o"></i>About</a></li>
+                    <li><a href="{{ route('seo.pages') }}"><i class="fa fa-circle-o"></i>SeoPages</a></li>
+                    {{-- <li><a href="{{ route('packageseo') }}"><i class="fa fa-circle-o"></i>Package</a></li>
+                    <li><a href="{{ route('aboutseo') }}"><i class="fa fa-circle-o"></i>About</a></li> --}}
                     <li><a href="{{ route('viewseo') }}"><i class="fa fa-circle-o"></i>ViewSeo</a></li>
                 </ul>
             </li>
@@ -172,7 +172,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="{{route('bookinginbox')}}"><i class="fa fa-circle-o"></i>Inbox</a></li>
+                    <li class="active"><a href="{{ route('bookings.inbox') }}"><i class="fa fa-circle-o"></i>Inbox</a></li>
+                    <li class="active"><a href="{{ route('breply.inbox') }}"><i class="fa fa-circle-o"></i>sent message</a></li>
                 </ul>
             </li>
              <li class="header">Review</li>

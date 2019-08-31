@@ -115,7 +115,8 @@ Package Show
       </div>
       <div class="modal-body">
         <div class="box box-primary">
-          <form role="form">
+          <form role="form" action="{{ route('packages.update',$package->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
             <div class="box-body">
                 <div class="form-group">
                   <div class="text text-danger">{{$errors->first('name')}}</div>
@@ -153,7 +154,7 @@ Package Show
                     </label>
                   </div>
                 </div>
-              </div>
+            </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary">Update</button>
             </div>
@@ -161,16 +162,18 @@ Package Show
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
+
 @endforeach
 
-@foreach($packages as $package)
 
 {{-- delete modal --}}
+@foreach($packages as $package)
+
 <div id="delete{{$package->id}}" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content-->
@@ -191,5 +194,6 @@ Package Show
       </div>
     </div>
   </div>
-  @endforeach
-  @endsection
+</div>
+@endforeach
+@endsection
