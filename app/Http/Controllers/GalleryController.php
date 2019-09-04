@@ -22,7 +22,7 @@ class GalleryController extends Controller
     }
 
     public function index(){
-    	$albums = Album::all();
+    	$albums = Album::orderBy('id','desc')->paginate(6);
         return view('cd-admin.home.gallery.index',compact('albums'));
     }
 
@@ -66,7 +66,7 @@ class GalleryController extends Controller
 
     }
     public function show(Album $image){
-        $img = DB::table('images')->where('album_id',$image->id)->get();
+        $img = DB::table('images')->where('album_id',$image->id)->orderBy('id','desc')->paginate(6);
     	return view('cd-admin.home.gallery.show',compact('image','img'));
 
     }
@@ -97,14 +97,14 @@ class GalleryController extends Controller
     }
     private function validateRequest(){
     	return Request()->validate([
-    		'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+    		'name' => 'required',
+    		'altimage' => 'required',
     		'image' =>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG'
     	]);
     }
     private function validateRequest1(){
     	return Request()->validate([
-    		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+    		'altimage' => 'required',
     		'image' => 'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
     		'albumselect' =>'required'
     	]);

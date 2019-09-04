@@ -19,12 +19,12 @@ class ContactController extends Controller
 
     public function contactinbox()
     {   
-        $contacts = Contact::orderBy('id','desc')->get();
+        $contacts = Contact::orderBy('id','desc')->paginate(10);
         $replys = ReplyContact::all();
         return view('cd-admin.home.contact.contactinbox',compact('contacts','replys'));
     }
     public function contactsentitem(){
-        $sentmsg = ReplyContact::orderBy('id','desc')->get();
+        $sentmsg = ReplyContact::orderBy('id','desc')->paginate(10);
 
         return view('cd-admin.home.contact.sentmessage',compact('sentmsg'));
     }

@@ -39,13 +39,13 @@ Package Show
                     <tbody>
                       @foreach($packages as $package)
                       <tr>
-                        <td>{{$package->name}}</td>
+                        <td >{{ e(str_limit($package->name,$limits='40')) }}</td>
                         <td>
                           <div class="btn-group">
                             @if($package->active=='Available')
-                          <button type="button" class="btn btn-success">{{$package->active}}</button>
+                          <button type="button" class="btn btn-success bsize">{{$package->active}}</button>
                           @else
-                          <button type="button" class="btn btn-danger">{{$package->active}}</button>
+                          <button type="button" class="btn btn-danger bsize">{{$package->active}}</button>
                           @endif
 
                           <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
@@ -121,7 +121,7 @@ Package Show
                 <div class="form-group">
                   <div class="text text-danger">{{$errors->first('name')}}</div>
                   <label for="name">Package Name</label>
-                  <input type="text" class="form-control" name="name" value="{{$package->name}}" id="name" placeholder="Enter Package name">
+                  <input type="text" class="form-control" name="name" value="{{ $package->name }}" id="name" placeholder="Enter Package name">
                 </div>
                 <div class="form-group">
                   <div class="text text-danger">{{$errors->first('image')}}</div>
@@ -133,13 +133,13 @@ Package Show
                   <div class="text text-danger">{{$errors->first('altimage')}}</div>
 
                   <label for="altimage">Package Alt Image</label>
-                  <input type="text" class="form-control" id="altimage" name="altimage" value="{{$package->altimage}}" placeholder="Enter alternative image name">
+                  <input type="text" class="form-control" id="altimage" name="altimage" value="{{ $package->altimage }}" placeholder="Enter alternative image name">
                 </div>
                 <div class="form-group">
                   <div class="text text-danger">{{$errors->first('description')}}</div>
 
                   <label for="name">Package Description</label>
-                  <textarea name="description" class="form-control summernote">{!!$package->description!!}</textarea>
+                  <textarea name="description" style="height: 100px;"  class="form-control summernote">{{ $package->description }}</textarea>
                 </div>
                 
                 <div class="form-group">
@@ -183,7 +183,7 @@ Package Show
         <h4 class="modal-title">Delete Package</h4>
       </div>
       <div class="modal-body">
-        <h2> <p>Are you sure to delete package {{$package->name}}??</p> </h2>
+        <h2> <p>Are you sure to delete package {{ e($package->name) }}??</p> </h2>
       </div>
       <div class="modal-footer">
         <form action="{{ route('packages.destroy',$package->id) }}" method="POST">

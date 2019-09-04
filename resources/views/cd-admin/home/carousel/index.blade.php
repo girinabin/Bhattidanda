@@ -41,6 +41,13 @@ Carousel Show
                     
                   </div>
                   <!-- /.box-body -->
+                  <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $carousel->links() }}
+                    
+                  </div>
+                </div>
                 </div>
               </div>
               

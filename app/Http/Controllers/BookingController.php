@@ -19,7 +19,7 @@ class BookingController extends Controller
         return view('cd-admin.home.bookings.create',compact('packages'));
     }
     public function bookinginbox(){
-    	$bookings = Booking::orderBy('id','desc')->get();
+    	$bookings = Booking::orderBy('id','desc')->paginate(10);
     	return view('cd-admin.home.bookings.bookinginbox',compact('bookings'));
     }
     public function bookinginboxshow(Booking $booking){
@@ -45,6 +45,12 @@ class BookingController extends Controller
 
     }
     public function binboxdestroy(Booking $booking){
+        $rep = BookingReply::all();
+        foreach($rep as $r){
+            if($booking->id==$r->booking_id){
+                $r->delete();
+            }
+        }
         $booking->delete();
         return redirect('bookings/inbox')->with('error','Message Deleted Successfully!!');
     }
@@ -58,8 +64,8 @@ class BookingController extends Controller
      { 
 
         $data = request()->validate([
-            'emailto' => 'required|email|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'subject' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'emailto' => 'required|email',
+            'subject' => 'required',
             'message' => 'required',
             'active' => 'required',
             'bookingstatus' => 'required'
@@ -77,12 +83,18 @@ class BookingController extends Controller
     }
 
     public function breplyinbox(){
-    	$bookings = BookingReply::all();
+    	$bookings = BookingReply::orderBy('id','desc')->paginate(10);
     	return view('cd-admin.home.bookings.sentmsgbooking',compact('bookings'));
     }
 
     public function breplydestroy(BookingReply $booking)
     {
+         $boo = Booking::all();
+        foreach($boo as $b){
+            if($booking->booking_id==$b->id){
+                $b->delete();
+            }
+        }
         $booking->delete();
         return redirect('breplyinbox/')->with('error','Message Deleted Successfully!!');
     }

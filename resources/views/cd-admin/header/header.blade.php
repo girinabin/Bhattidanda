@@ -215,6 +215,7 @@
                 <ul class="treeview-menu">
                     <li class="active"><a href="{{route('contactinbox')}}"><i class="fa fa-circle-o"></i>inbox</a></li>
                     <li class="active"><a href="{{route('messagesent')}}"><i class="fa fa-circle-o"></i>sent message</a></li>
+                    <li class="active"><a href="{{route('q.sent')}}"><i class="fa fa-circle-o"></i>quick mail</a></li>
                 </ul>
             </li>
 

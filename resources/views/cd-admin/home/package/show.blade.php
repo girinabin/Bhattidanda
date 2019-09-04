@@ -22,9 +22,9 @@ Package Details
           	<div class="box box-primary">
 				<div class="col-md-3"></div>
 				<div class="col-md-6 text-center textedit">
-					<h2>{{$package->name}} </h2>
+					<h2>{{ e($package->name) }} </h2>
 					<img src="{{asset('public/uploads/package/'.$package->image)}}" alt="" class="rounded-circle" height="350px" width="350px">
-						<p>{!!$package->description!!}</p>
+						<p>{!! $package->description !!}</p>
 					
 				</div>
 				<div class="col-md-3"></div>
@@ -60,7 +60,7 @@ Package Details
           <h4 class="modal-title">Delete Package</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure to delete package {{$package->name}}??</p> </h2>
+          <h2> <p>Are you sure to delete package {{ e($package->name) }}??</p> </h2>
         </div>
         <div class="modal-footer">
           <form action="{{ route('packages.destroy',$package->id) }}" method="POST">

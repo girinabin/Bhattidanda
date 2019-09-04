@@ -93,12 +93,21 @@ class ServiceController extends Controller
         return redirect()->back();
     }
 
+    public function destroy(Service $service){
+        if(file_exists('public/uploads/service/'.$service->image)){
+            unlink('public/uploads/service/'.$service->image);
+        }
+        $service->delete();
+        return redirect('/services')->with('error','Data Deleted Successfully');
+
+    }
+
     private function validateRequest(){
     	return request()->validate([
-            'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'name'=>'required',
 
-            'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'summary'=>'required|regex:/^[ A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage'=>'required',
+    		'summary'=>'required',
     		'active'=>'required',
     		'image'=>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG'
     	]);
@@ -106,10 +115,10 @@ class ServiceController extends Controller
 
     private function uvalidateRequest(){
         return request()->validate([
-            'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'name'=>'required',
             
-            'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'summary'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage'=>'required',
+            'summary'=>'required',
             'active'=>'required',
             'image'=>'mimes:png,jpg,jpeg,JPG,JPEG,PNG'
         ]);

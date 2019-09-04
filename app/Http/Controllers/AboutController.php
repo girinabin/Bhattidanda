@@ -15,7 +15,7 @@ class AboutController extends Controller
         return view('cd-admin.home.about.aboutform');
     }
     public function aboutshow(){
-        $about = DB::table('knowabouts')->get();
+        $about = DB::table('knowabouts')->orderBy('id','desc')->get();
        
         return view('cd-admin.home.about.aboutshow',compact('about'));
     }
@@ -27,7 +27,6 @@ class AboutController extends Controller
     public function aboutstore(){
         $request = Request()->all();
         $vald = $this->validateRequest();
-        // $valdu = $this->uvalidateRequest();
         $about = new Knowabout;
         $about['name'] = $request['name'];
         $about['tagline'] = $request['tagline'];
@@ -77,22 +76,22 @@ class AboutController extends Controller
     }
     public function validateRequest(){
         return Request()->validate([
-            'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'tagline' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'name' => 'required',
+            'tagline' => 'required',
+            'altimage' => 'required',
             'description' => 'required',
-            'video' => 'required',
+            'video' => 'required|url',
             'image' => 'required|mimes:jpeg,png,jpg,JPEG,JPG,PNG',
             'pdf' => 'required|mimes:pdf',
         ]);
     }
     public function uvalidateRequest(){
         return Request()->validate([
-            'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'tagline' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'name' => 'required',
+            'tagline' => 'required',
+            'altimage' => 'required',
             'description' => 'required',
-            'video' => 'required',
+            'video' => 'required|url',
             'image' => 'mimes:jpeg,png,jpg,JPEG,JPG,PNG',
             'pdf' => 'mimes:pdf',
         ]);  

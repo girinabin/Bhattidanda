@@ -30,7 +30,7 @@ Booking Replyed Details
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h5>To: {{$booking->emailto}}
+                <h5>To: {{e($booking->emailto)}}
                 <span class="mailbox-read-time pull-right">{{$booking->created_at}}</span></h5>
               </div>
               <!-- /.mailbox-read-info -->

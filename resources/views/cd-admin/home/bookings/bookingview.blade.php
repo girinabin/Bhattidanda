@@ -22,15 +22,15 @@ Booking read
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
-              <div class="box-tools pull-right">
+              {{-- <div class="box-tools pull-right">
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
                 <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
-              </div>
+              </div> --}}
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
               <div class="mailbox-read-info">
-                <h5>From: {{$booking->email}}
+                <h5>From: {{e($booking->email)}}
                 <span class="mailbox-read-time pull-right">{{$booking->created_at}}</span></h5>
               </div>
               <!-- /.mailbox-read-info -->
@@ -44,14 +44,14 @@ Booking read
               <div class="mailbox-read-message">
                 <div class="col-md-4"></div>
                 <div class="col-md-7">
-                  <h4>Name:{{$booking->name}}</h4>
-                <h4>Email:{{$booking->email}}</h4>
-                <h4>Gender:{{$booking->gender}}</h4>
-                <h4>Age:{{$booking->age}}</h4>
-                <h4>Location:{{$booking->location}}</h4>
-                <h4>Contact:{{$booking->contact}}</h4>
-                <h4>Booked Package:<b>{{$booking->slug}}</b></h4>
-                <h4>Message:{!!$booking->message!!}</h4>
+                  <h4>Name:{{e($booking->name)}}</h4>
+                <h4>Email:{{e($booking->email)}}</h4>
+                <h4>Gender:{{e($booking->gender)}}</h4>
+                <h4>Age:{{e($booking->age)}}</h4>
+                <h4>Location:{{e($booking->location)}}</h4>
+                <h4>Contact:{{e($booking->contact)}}</h4>
+                <h4>Booked Package:<b>{{e($booking->slug)}}</b></h4>
+                <h4>Message:{{e($booking->message)}}</h4>
                 </div>
                 
               </div>

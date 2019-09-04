@@ -45,7 +45,7 @@ Contact Form
               <div>
                 <div class="text text-danger">{{$errors->first('message')}}</div>
 
-                <textarea class="textarea" name="message" placeholder="Message" id="summernote"
+                <textarea class="textarea summernote" name="message" placeholder="Message" 
                 style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
               </div>
             

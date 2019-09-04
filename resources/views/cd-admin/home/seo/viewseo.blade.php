@@ -20,14 +20,14 @@ View Seo
           <div class="box">
             <div class="box-header">
               <h3 class="box-title"><a href="{{ route('seo.pages') }}"><button class="btn btn-primary">Add Seo</button></a></h3>
-              <div class="box-tools">
+              {{-- <div class="box-tools">
                 <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
                   <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
                   <div class="input-group-btn">
                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
-              </div>
+              </div> --}}
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
@@ -40,9 +40,9 @@ View Seo
                 </tr>
                 <tr>
                   @foreach($seos as $seo)
-                  <td><span class="label label-primary">{{$seo->page}}</span></td>
-                  <td>{{$seo->seotitle}}</td>
-                  <td>{{$seo->seokeyword}}</td>
+                  <td><span class="label label-primary">{{e($seo->page)}}</span></td>
+                  <td>{{e(str_limit($seo->seotitle,$limits='30'))}}</td>
+                  <td>{{e(str_limit($seo->seokeyword,$limits='30'))}}</td>
                   <td>
                     <div class="btn-group">
                       <a href=""  data-toggle="modal" data-target="#edit{{$seo->id}}">
@@ -70,7 +70,7 @@ View Seo
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Edit {{$seo->seotitle}} Seo</h4>
+        <h4 class="modal-title">Edit {{e($seo->page)}} Seo</h4>
       </div>
       <div class="modal-body">
         <div class="box box-primary">
@@ -78,22 +78,10 @@ View Seo
             @csrf
            <div class="box-body">
                 <div class="form-group">
-                  <div class="text text-danger">{{$errors->first('page')}}</div>
 
 
-                  <label for="page">Seo Pages</label> 
-                  <select name="page" id="page" class="form-control">
-                    <option value=" ">Select Seo Page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='about'?'selected':''}}>About page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='package'?'selected':''}}>Package page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='service'?'selected':''}}>Service Page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='gallery'?'selected':''}}>Gallery Page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='booking'?'selected':''}}>Booking Page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='review'?'selected':''}}>Review Page</option>
-                    <option value="{{$seo->page}}"{{$seo->page=='contact'?'selected':''}}>Contact Page</option>
-                    
-
-                  </select>
+                  <label for="page">Seo Pages:</label> {{$seo->page}}
+                  
                 </div>
                 <div class="form-group">
                   <div class="text text-danger">{{$errors->first('seotitle')}}</div>
@@ -135,12 +123,12 @@ View Seo
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">View {{$seo->seotitle}} Seo</h4>
+        <h4 class="modal-title">View {{$seo->page}} Seo</h4>
       </div>
       <div class="modal-body">
         <div class="box box-primary">
-          <strong>Seo title:</strong><br>{{$seo->seotitle}}<br>
-          <strong>Seo keyword:</strong><br>{{$seo->seokeyword}}<br>
+          <strong>Seo title:</strong><br>{{e($seo->seotitle)}}<br>
+          <strong>Seo keyword:</strong><br>{{e($seo->seokeyword)}}<br>
           <strong>Seo Description:</strong>{!!$seo->seodescription!!}<br>
         </div>
       </div>

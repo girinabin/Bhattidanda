@@ -47,7 +47,7 @@ Booking inbox
                         <a href="{{ route('bookings.inboxshow',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
                         <button type="button" class="btn btn-success btn-sm">Approved</button></td>
 
-                        @else($test->bookingstatus=='0')
+                        @else
 
                         <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{ route('bookings.inboxshow',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
@@ -59,18 +59,30 @@ Booking inbox
 
                       
 
-                      <td class="mailbox-name">{{$booking->name}}</td>
+                      <td class="mailbox-name">{{e($booking->name)}}</td>
                       
-                      <td class="mailbox-email"><b>{{$booking->email}}</b></td>
-                      <td class="mailbox-subject">{!!str_limit($booking->message,$limits='20')!!}
+                      <td class="mailbox-email"><b>{{e($booking->email)}}</b></td>
+                      <td class="mailbox-subject">{!!e(str_limit($booking->message,$limits='20'))!!}
                       </td>
+                      <?php $date = Carbon\Carbon::parse($booking->created_at);
+                      $now=Carbon\Carbon::now();
+                      $t=$date->diffForHumans($now);
+                      ?>
                       
-                      <td class="mailbox-date">{{$booking->created_at}}</td>
+                      <td class="mailbox-date">{{$t}}</td>
                     </tr>
                     @endforeach
                     
                   </tbody>
+
                 </table>
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $bookings->links() }}
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>

@@ -37,7 +37,7 @@ Gallery Show
                     <div class="col-md-4 rowedit">
                       <figure style='border:1px solid '>
                       <img src="{{asset('public/uploads/album/'.$album->image)}}" alt="" height="350px" width="350px">
-                      <figcaption style='text-align: center'>{{$album->name}}</figcaption>
+                      <figcaption style='text-align: center'>{{e($album->name)}}</figcaption>
                       {{-- <button class="btn btn-danger pull-right buttonedit">Delete</button> --}}
                       <a href="{{ route('images.show',$album->id) }}"><button class="btn btn-primary pull-left buttonedit">View</button></a>
                       
@@ -48,7 +48,15 @@ Gallery Show
                       </figure>
                     </div>
                 @endforeach 
+
                   <!-- /.box-body -->
+                </div>
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $albums->links() }}
+                    
+                  </div>
                 </div>
 
               </div>
@@ -70,7 +78,7 @@ Gallery Show
           <h4 class="modal-title">Delete Album</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure to delete album {{$album->name}}??</p> </h2>
+          <h2> <p>Are you sure to delete album {{e($album->name)}}??</p> </h2>
         </div>
         <div class="modal-footer">
            <form action="{{ route('images.destroy',$album->id) }}" method="POST">

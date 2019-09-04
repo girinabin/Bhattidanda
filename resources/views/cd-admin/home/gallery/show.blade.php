@@ -44,6 +44,13 @@ Image Show
 
                       
                   </div>
+                  <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $img->links() }}
+                    
+                  </div>
+                </div>
                   <!-- /.box-body -->
                 </div>
               </div>

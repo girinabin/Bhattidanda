@@ -13,7 +13,7 @@ class CarouselController extends Controller
         return view('cd-admin.home.carousel.create');
     }
     public function index(){
-        $carousel = DB::table('carousels')->get();
+        $carousel = DB::table('carousels')->orderBy('id','desc')->paginate(6);
         return view('cd-admin.home.carousel.index',compact('carousel'));
     }
      
@@ -68,7 +68,7 @@ class CarouselController extends Controller
     	 return Request()->validate([
     		'description'=>'required',
     		'image'=>'required|mimes:png,jpg,jpeg,PNG,JPG,JPEG',
-            'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage' => 'required',
     		'active' => 'required'
     	]);
 

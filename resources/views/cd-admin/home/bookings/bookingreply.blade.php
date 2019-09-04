@@ -23,11 +23,11 @@ Booking Request Reply
             <i class="fa fa-envelope"></i>
             <h3 class="box-title">Quick Email</h3>
             <!-- tools box -->
-            <div class="pull-right box-tools">
+            {{-- <div class="pull-right box-tools">
               <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
               title="Remove">
               <i class="fa fa-times"></i></button>
-            </div>
+            </div> --}}
             <!-- /. tools -->
           </div>
           <div class="box-body">
@@ -35,7 +35,7 @@ Booking Request Reply
               @csrf
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('emailto')}}</div>
-                <input type="email" class="form-control" name="emailto" value="{{$booking->email}}" placeholder="Email to:">
+                <input type="email" class="form-control" name="emailto" value="{{e($booking->email)}}" placeholder="Email to:">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('subject')}}</div>
@@ -45,7 +45,7 @@ Booking Request Reply
               <div>
                 <div class="text text-danger">{{$errors->first('message')}}</div>
 
-                <textarea class="textarea" placeholder="Message" name="message" id="summernote"
+                <textarea class="textarea summernote" placeholder="Message" name="message"
                 style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
               </div>
               <div class="form-group">

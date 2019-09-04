@@ -43,8 +43,8 @@ About Show
                 <tbody>
                   @foreach($about as $a)
                 <tr>
-                  <td>{{$a->name}}</td>
-                  <td>{{$a->tagline}}</td>
+                  <td>{{e(str_limit($a->name,$limits='30'))}}</td>
+                  <td>{{e(str_limit($a->tagline,$limits='30'))}}</td>
                   
                   <td>
 		                <div class="btn-group">
@@ -116,7 +116,7 @@ About Show
                   <div class="form-group">
                     <div class="text text-danger">{{$errors->first('name')}}</div>
                     <label for="name">About Name</label>
-                    <input type="text" class="form-control" name="name"  value="{{$a->name}}">
+                    <input type="text" class="form-control" name="name"  value="{{ $a->name }}">
                   </div>
                   <div class="form-group">
                     <div class="text text-danger">{{$errors->first('tagline')}}</div>
@@ -141,7 +141,7 @@ About Show
                     <div class="text text-danger">{{$errors->first('description')}}</div>
 
                     <label for="description">About Description</label>
-                    <textarea name="description" class="form-control summernote" style="height=100px;" >{!! $a->description !!}</textarea>
+                    <textarea name="description" class="form-control summernote" style="height=100px;" >{{ $a->description}}</textarea>
                   </div>
                 
                   <div class="form-group">
@@ -184,7 +184,7 @@ About Show
         <h4 class="modal-title">Delete About</h4>
       </div>
       <div class="modal-body">
-        <h2> <p>Are you sure {{$a->name}}??</p> </h2>
+        <h2> <p>Are you sure {{e($a->name)}}??</p> </h2>
       </div>
       <div class="modal-footer">
         <form action="{{ route('abouts.destroy',$a->id) }}" method="POST">

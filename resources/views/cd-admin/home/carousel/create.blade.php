@@ -30,7 +30,7 @@ Carousel Form
 								<div class="form-group">
 									<div class="text text-danger">{{$errors->first('description')}}</div>
 									<label for="name">Carousel Description</label>
-									<textarea name="description" value="{{ old('description') }}" class="form-control" id="summernote"></textarea>
+									<textarea name="description" value="{{ old('description') }}" class="form-control summernote" ></textarea>
 								</div>
 								<div class="form-group">
 									<div class="text text-danger">{{$errors->first('image')}}</div>

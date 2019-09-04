@@ -31,11 +31,18 @@ Gallery Form
 
 						<form role="form" action="{{ route('imagealbums.store1') }}" method="POST" enctype="multipart/form-data">
 							@csrf
+
 							<div class="box-body">
+
 								<div class="form-group">
-									<strong>Album Name:</strong>
+									<label for="albumselect">Album Name</label>
+									<select name="albumselect" id="" class="form-control">
+									<option value="{{$album['id']}}" name="albumselect">{{$album['name']}}</option>
+									</select>
+									
+									{{-- <strong>Album Name:</strong>
 									 {{$album['name']}}	
-									<input type="hidden" name="albumselect" value="{{$album['id']}}" readonly="">	
+									<input type="hidden" name="albumselect" value="{{$album['id']}}" readonly=""> --}}	
 									{{-- <select name="albumselect" id="albumselect" class="form-control">
 										<option value="	">Select Album</option>
 										@foreach($album as $albums)

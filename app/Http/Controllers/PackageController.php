@@ -11,7 +11,7 @@ use App\Booking;
 class PackageController extends Controller
 {
   	public function packageindex()
- 	{	$packages = Package::all();
+ 	{	$packages = Package::orderBy('id','desc')->get();
         return view('cd-admin.home.package.index',compact('packages'));
    	}
     public function packageshow(Package $package){
@@ -29,6 +29,8 @@ class PackageController extends Controller
     	$a = [];
     	$a['slug'] = str_slug($request['name']);
     	$a['created_at'] = Carbon::now();
+        // $a['name'] = strip_tags(htmlspecialchars_decode($request['name']));
+        // $a['altimage'] = strip_tags(htmlspecialchars_decode($request['altimage']));
     	if(isset($request['image']))
     	{
     		$file = $request['image'];
@@ -37,6 +39,7 @@ class PackageController extends Controller
     		$file->move($destination,$fileName);
     		$a['image'] = $fileName;
     	}
+        // dd($a);
     	$final = array_merge($data,$a);
     	DB::table('packages')->insert($final);
         
@@ -109,10 +112,9 @@ class PackageController extends Controller
     	$test =  request()->validate([
             
             
-    		'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'altimage' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'description' => array('Regex:/^[A-Za-z0-9\-! ,\'\"\/@\.:\(\)]+$/'),
-    		
+    		'name' => 'required',
+    		'altimage' => 'required',
+            'description' => 'required',
     		'active' =>'required',
     		'image' => 'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
         
@@ -122,9 +124,9 @@ class PackageController extends Controller
     }
     private function uvalidateRequest(){
         return request()->validate([
-            'name'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'name'=>'required',
             
-            'altimage'=>'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'altimage'=>'required',
             'description'=>'required',
             'active'=>'required',
             'image'=>'mimes:png,jpg,jpeg,JPG,JPEG,PNG'

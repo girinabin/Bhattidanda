@@ -59,9 +59,9 @@ class ReviewController extends Controller
 
     public function validateRequest(){
     	$data =  Request()->validate([
-    		'name' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'address' =>'required|regex:/^[ ,.:\[\]A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'summary' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+    		'name' => 'required',
+    		'address' =>'required',
+    		'summary' => 'required',
     		'active' => 'required'
     	]);
 

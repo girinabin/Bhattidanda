@@ -9,6 +9,8 @@
   <!-- FavIcon Link -->
   <link rel="icon" type="image/ico" href="{{url('public/favicon.ico')}}">
   <link rel="stylesheet" href="{{url('public/cd-admin/creatu/css/rowedit.css')}}">
+  <link rel="stylesheet" href="{{url('public/cd-admin/creatu/css/bsize.css')}}">
+
 
 
   <!-- Meta Tags -->

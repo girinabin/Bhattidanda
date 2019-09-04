@@ -9,7 +9,7 @@ Contact inbox
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Inbox
+     Contact Inbox
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Inbox</li>
@@ -55,16 +55,27 @@ Contact inbox
                         @endif
 
                       
-                      <td class="mailbox-name"><b>{{$contact->email}}</b></td>
+                      <td class="mailbox-name"><b>{{e($contact->email)}}</b></td>
                       <td class="mailbox-subject">{!!str_limit($contact->message,$limits='20')!!}
                       </td>
+                      <?php $date = Carbon\Carbon::parse($contact->created_at);
+                      $now=Carbon\Carbon::now();
+                      $t=$date->diffForHumans($now);
+                      ?>
                       
-                      <td class="mailbox-date">{{$contact->created_at}}</td>
+                      <td class="mailbox-date">{{$t}}</td>
                     </tr>
                     @endforeach
                     
                   </tbody>
                 </table>
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $contacts->links() }}
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>

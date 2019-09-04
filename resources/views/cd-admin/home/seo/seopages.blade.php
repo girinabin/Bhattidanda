@@ -66,10 +66,12 @@ Seo Form
 							</div>
 							<div class="box-footer">
 								<button type="submit" class="btn btn-primary">Add Seo</button>
-								<button type="" class="btn btn-danger pull-right">Cancel</button>
 								
 							</div>
 						</form>
+						<div class="box-footer">
+							<a href="{{URL()->previous()}}"><button type="button" class="btn btn-danger pull-right">Cancel</button></a>
+						</div>
 					</div>
 				</div>
 			</div>

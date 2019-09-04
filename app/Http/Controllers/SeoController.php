@@ -15,13 +15,13 @@ class SeoController extends Controller
     }
 
      public function viewseo(){
-     	$seos = DB::table('seos')->get();
+     	$seos = DB::table('seos')->orderBy('id','desc')->get();
         return view('cd-admin.home.seo.viewseo',compact('seos'));
     }
     public function validateRequest(){
     	return Request()->validate([
-    		'seotitle' =>'required|max:65|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-    		'seokeyword' => 'required|max:65|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+    		'seotitle' =>'required|max:65',
+    		'seokeyword' => 'required|max:65',
     		'seodescription' => 'required|max:180',
     		'page' => 'required'
     	]);

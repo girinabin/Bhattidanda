@@ -36,15 +36,15 @@ Show Services
                   <tbody>
                     @foreach($service as $services)
                     <tr>
-                      <td>{!!$services->name!!}
+                      <td>{{e(str_limit($services->name,$limits='30'))}}
                       </td>
                       <td><img src="{{ url('public/uploads/service/'.$services->image) }}  " height="50px" width="50px" ; alt=""></td>
                       <td>
                         <div class="btn-group">
                             @if($services->active=='Available')
-                          <button type="button" class="btn btn-success">{{$services->active}}</button>
+                          <button type="button" class="btn btn-success bsize">{{$services->active}}</button>
                           @else
-                          <button type="button" class="btn btn-danger">{{$services->active}}</button>
+                          <button type="button" class="btn btn-danger bsize">{{$services->active}}</button>
                           @endif
 
                           <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
@@ -122,7 +122,7 @@ Show Services
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('name')}}</div>
                 <label for="name">Service Name</label>
-                <input type="text" class="form-control" name="name" value="{{old('name') ?? $services->name}}" id="name" placeholder="Enter Service name">
+                <input type="text" class="form-control" name="name" value="{{$services->name}}" id="name" placeholder="Enter Service name">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('image')}}</div>
@@ -134,13 +134,13 @@ Show Services
                 <div class="text text-danger">{{$errors->first('altimage')}}</div>
 
                 <label for="altimage">Service Alt Image</label>
-                <input type="text" class="form-control" name="altimage" value="{{old('altimage') ?? $services->altimage}}" id="altimage" placeholder="Enter image text">
+             <input type="text" class="form-control" name="altimage" value="{{$services->altimage}}" id="altimage" placeholder="Enter image text">
               </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('summary')}}</div>
 
                   <label for="name">Service Summary</label>
-                  <textarea name="summary" class="form-control" name="summary"  id="">{{old('summary') ?? $services->summary }}</textarea>
+                  <textarea name="summary" class="form-control" name="summary"  >{{$services->summary }}</textarea>
                 </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('active')}}</div>
@@ -156,13 +156,13 @@ Show Services
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary">Update</button>
+             <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
+
             </div>
           </form>
         </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+     
     </div>
   </div>
 </div>
@@ -177,7 +177,7 @@ Show Services
           <h4 class="modal-title">Delete Service</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure to delete {{$services->name}}??</p> </h2>
+          <h2> <p>Are you sure to delete {{e($services->name)}}??</p> </h2>
         </div>
         <div class="modal-footer">
           <form action="{{ route('services.destroy',$services->id) }}" method="POST">

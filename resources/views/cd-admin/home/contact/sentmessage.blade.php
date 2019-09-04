@@ -1,6 +1,6 @@
 @extends('cd-admin.home-master')
 @section('page-title')
-Sent message
+Contact Sent message
 @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@ Sent message
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Sent Message
+      Contact Sent Message
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Sent message</li>
@@ -37,12 +37,23 @@ Sent message
                       <td class="mailbox-name">{{$msg->emailto}}</td>
                       <td class="mailbox-subject"><b>{{$msg->subject}}</b>
                       </td>
-                      <td class="mailbox-date">{{$msg->created_at}}</td>
+                      <?php $date = Carbon\Carbon::parse($msg->created_at);
+                      $now=Carbon\Carbon::now();
+                      $t=$date->diffForHumans($now);
+                      ?>
+                      <td class="mailbox-date">{{$t}}</td>
                     </tr>
                     
                   </tbody>
                   @endforeach
                 </table>
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $sentmsg->links() }}
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>

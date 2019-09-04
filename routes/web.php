@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -116,6 +116,10 @@ Route::post('/cont/{contact}','ContactController@mailreply')->name('contacts.mai
 Route::post('/contacts/{contact}','ContactController@destroy')->name('contacts.destroy');
 Route::post('/msgreply/{message}','ContactController@sentdestroy')->name('message.destroy');
 Route::get('contacts/create','ContactController@create')->name('contacts.create');
+Route::post('/qucikreply','DashboardController@quickmailstore')->name('quick.store');
+Route::get('/quickreplysent','DashboardController@qsent')->name('q.sent');
+Route::get('/qucikview/{quick}','DashboardController@qview')->name('q.view');
+Route::post('/qdestroy/{quick}','DashboardController@qdestroy')->name('qmessage.destroy');
 
 // seo
 // Route::get('/serviceseo','SeoController@serviceseo')->name('serviceseo');

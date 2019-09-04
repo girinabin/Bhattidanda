@@ -21,7 +21,7 @@ Service Detail
 				<div class="col-md-3"></div>
 				<div class="col-md-6 text-center textedit">
 					<img src="{{asset('public/uploads/service/'.$service->image)}}" alt="" class="rounded-circle" height="350px" width="350px">
-					<h2>{!!$service->name!!}</h2>
+					<h2>{{e($service->name)}}</h2>
 				</div>
 				<div class="col-md-3"></div>
 				
@@ -29,7 +29,7 @@ Service Detail
 			
 			<div class="row">
 				<div class="col-md-12">
-					<p>{!!$service->summary!!}</p>
+					<p>{{e($service->summary)}}</p>
 					<div class="box-button">
 						@if($service->active == 'Available')
 						<button class="btn btn-success">{{($service->active)}}</button>
@@ -60,7 +60,7 @@ Service Detail
           <h4 class="modal-title">Delete service</h4>
         </div>
         <div class="modal-body">
-          <h2> <p>Are you sure to delete {{$service->name}}??</p> </h2>
+          <h2> <p>Are you sure to delete {{e($service->name)}}??</p> </h2>
         </div>
         <div class="modal-footer">
           <form action="{{ route('services.destroy',$service->id) }}" method="POST">

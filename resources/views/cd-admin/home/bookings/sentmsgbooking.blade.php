@@ -41,15 +41,26 @@ Booking Replied message
 
 
                       </td>
-                      <td class="mailbox-email"><b>{{$booking->emailto}}</b></td>
-                      <td class="mailbox-subject">{{$booking->subject}}
+                      <td class="mailbox-email"><b>{{e($booking->emailto)}}</b></td>
+                      <td class="mailbox-subject">{{e($booking->subject)}}
                       </td>
-                      <td class="mailbox-date">{{$booking->created_at}}</td>
+                      <?php $date = Carbon\Carbon::parse($booking->created_at);
+                      $now=Carbon\Carbon::now();
+                      $t=$date->diffForHumans($now);
+                      ?>
+                      <td class="mailbox-date">{{$t}}</td>
                     </tr>
                     
                   </tbody>
                   @endforeach
                 </table>
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                  {{ $bookings->links() }}
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>

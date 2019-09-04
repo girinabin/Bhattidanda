@@ -44,8 +44,8 @@ ShowReview
 												<tbody>
 													@foreach($review as $reviews)
 													<tr>
-														<td>{{$reviews->name}}</td>
-														<td>{{$reviews->address}}</td>
+														<td>{{e(str_limit($reviews->name,$limits='30'))}}</td>
+														<td>{{e(str_limit($reviews->address,$limits='30'))}}</td>
 														<td>
 							<div class="btn-group">
                            @if($reviews->active=='Active')
@@ -92,7 +92,7 @@ ShowReview
 												<tfoot>
 												<tr>
 													<th>Name</th>
-													<th>Email</th>
+													<th>Address</th>
 													<th>Status</th>
 													<th>Action</th>
 												</tr>
@@ -142,7 +142,7 @@ ShowReview
 								<div class="text text-danger">{{$errors->first('summary')}}</div>
 
 								<label for="summary">Summary</label>
-								<textarea name="summary" class="form-control" id="summary">{!!$reviews->summary!!}</textarea>
+								<textarea name="summary" class="form-control" id="summary">{{$reviews->summary}}</textarea>
 							</div>
 							<div class="form-group">
 								<div class="text text-danger">{{$errors->first('active')}}</div>
