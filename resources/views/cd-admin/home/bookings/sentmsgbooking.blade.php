@@ -33,12 +33,7 @@ Booking Replied message
                       <td>
                         <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{ route('breply.view',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
-                        @if($booking->bookingstatus=='1')
-                        <button type="button" class="btn btn-success btn-sm ">Approved</button>
-                        @else
-                        <button type="button" class="btn btn-danger btn-sm ">Rejected</button>
-                        @endif
-
+                       
 
                       </td>
                       <td class="mailbox-email"><b>{{e($booking->emailto)}}</b></td>

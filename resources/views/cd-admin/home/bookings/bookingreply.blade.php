@@ -22,13 +22,7 @@ Booking Request Reply
           <div class="box-header">
             <i class="fa fa-envelope"></i>
             <h3 class="box-title">Quick Email</h3>
-            <!-- tools box -->
-            {{-- <div class="pull-right box-tools">
-              <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-              title="Remove">
-              <i class="fa fa-times"></i></button>
-            </div> --}}
-            <!-- /. tools -->
+            
           </div>
           <div class="box-body">
             <form action="{{ route('bookings.mailreply',$booking->id) }}" method="POST">
@@ -54,7 +48,7 @@ Booking Request Reply
                   <div class="radio">
                     <label>
                       
-                      <input type="radio" name="active"  value="1" checked >Replyed<br>
+                      <input type="hidden" name="replystatus" value="1"<br>
                       
 
                     </label>
@@ -62,22 +56,7 @@ Booking Request Reply
                  
 
               </div>
-              <div class="form-group">
-                <div class="text text-danger">{{$errors->first('bookingstatus')}}</div>
-                <label for="booking">Booking Status</label>
-                  <div class="radio">
-                    <label>
-                      
-                      <input type="radio" name="bookingstatus"  value="1"  >Approved<br>
-                      <input type="radio" name="bookingstatus"  value="0"  >Rejected<br>
-
-                      
-
-                    </label>
-                  </div>
-                 
-
-              </div>
+           
               <div class="box-footer clearfix">
                 <button type="submit" class="pull-right btn btn-default" id="sendEmail">Send
                 <i class="fa fa-arrow-circle-right"></i></button>

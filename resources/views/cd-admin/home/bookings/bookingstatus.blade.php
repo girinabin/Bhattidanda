@@ -1,6 +1,6 @@
 @extends('cd-admin.home-master')
 @section('page-title')
-Booking inbox
+Booking Status
 @endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -9,7 +9,7 @@ Booking inbox
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-     Booking Inbox
+     Booking Status
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/Booking/Inbox</li>
@@ -31,7 +31,7 @@ Booking inbox
                     @foreach($bookings as $booking)
                     <tr>
                       <td>
-                        <?php $test = App\BookingStatus::where('emailto',$booking->email)->where('booking_id',$booking->id)->orderBy('id','desc')->get()->first();
+                        <?php $test = App\BookingReply::where('emailto',$booking->email)->where('booking_id',$booking->id)->orderBy('id','desc')->get()->first();
 
                         ?>
                         @if($test=='')
@@ -39,19 +39,19 @@ Booking inbox
                         <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{ route('bookings.inboxshow',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
 
-                        <div class=" alert-info notification" >Pending</div></td>
+                        <button type="button" class="btn btn-info btn-sm">Pending</button></td>
 
-                        @elseif($test->bstatus=='1')
+                        @elseif($test->bookingstatus=='1')
 
                         <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{ route('bookings.inboxshow',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
-                        <div class="alert-success notification">Approved</div></td>
+                        <button type="button" class="btn btn-success btn-sm">Approved</button></td>
 
                         @else
 
                         <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{ route('bookings.inboxshow',$booking->id) }}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
-                        <div class="alert-danger notification">Rejected</div></td>
+                        <button type="button" class="btn btn-danger btn-sm">Rejected</button></td>
 
                         @endif
 

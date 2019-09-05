@@ -75,6 +75,8 @@ Route::get('bookingsinboxshow/{booking}','BookingController@bookinginboxshow')->
 Route::post('bookingsdelete/{booking}','BookingController@binboxdestroy')->name('binbox.destroy');
 Route::get('bookingsreplycreate/{booking}','BookingController@breplycreate')->name('breply.create');
 Route::post('bookingsrply/{contact}','BookingController@mailreply')->name('bookings.mailreply');
+Route::post('bstatusrply/{id}','BookingController@statusreply')->name('b.statusreply');
+
 Route::get('breplyinbox/','BookingController@breplyinbox')->name('breply.inbox');
 Route::post('breplydestroy/{booking}','BookingController@breplydestroy')->name('breply.destroy');
 Route::get('breplyview/{booking}','BookingController@breplyview')->name('breply.view');

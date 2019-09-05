@@ -18,6 +18,10 @@ class CreateAlbumsTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->string('altimage');
+            $table->string('seotitle');
+            $table->string('seokeyword');
+            $table->string('seodescription');
+            $table->integer('active');
             $table->timestamps();
         });
     }

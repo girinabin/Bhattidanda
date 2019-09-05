@@ -40,6 +40,11 @@ class GalleryController extends Controller
     		$file->move($destinationPath,$fileName);
     	}
     	$image['image'] = $fileName;
+        $image['seotitle'] = $request['seotitle'];
+        $image['seokeyword'] = $request['seokeyword'];
+        $image['seodescription'] = $request['seodescription'];
+        $image['active'] = $request['active'];
+
     	$image->save();
     	return redirect('images')->with('success','Album Added Successfully');	
     }
@@ -58,6 +63,8 @@ class GalleryController extends Controller
          $img->image = $fileName;
          $img['altimage'] = $request['altimage'];
          $img['album_id'] = $request['albumselect'];
+        $img['active'] = $request['active'];
+
          $img->save();
 
         return redirect('images/'.$img->album_id)->with('success','Image Added Successfully');
@@ -99,14 +106,20 @@ class GalleryController extends Controller
     	return Request()->validate([
     		'name' => 'required',
     		'altimage' => 'required',
-    		'image' =>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG'
+    		'image' =>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
+            'seotitle' =>'required|max:65',
+            'seokeyword' => 'required|max:65',
+            'seodescription' => 'required|max:180',
+            'active' => 'required'
+
     	]);
     }
     private function validateRequest1(){
     	return Request()->validate([
     		'altimage' => 'required',
     		'image' => 'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
-    		'albumselect' =>'required'
+    		'albumselect' =>'required',
+            'active' => 'required'
     	]);
     }
 }

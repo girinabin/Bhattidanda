@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookingRepliesTable extends Migration
+class CreateBookingStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateBookingRepliesTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_replies', function (Blueprint $table) {
+        Schema::create('booking_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('booking_id');
             $table->string('emailto');
-            $table->string('subject');
-            $table->longtext('message');
             $table->integer('replystatus');
+            $table->integer('bstatus');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateBookingRepliesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_replies');
+        Schema::dropIfExists('booking_statuses');
     }
 }

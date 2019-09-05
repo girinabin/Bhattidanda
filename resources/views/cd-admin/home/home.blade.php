@@ -42,7 +42,7 @@ Home
           <div class="icon">
             <i class="ion ion-checkmark"></i>
           </div>
-          <a href="{{ route('breply.inbox') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ route('bookings.inbox') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -56,7 +56,7 @@ Home
           <div class="icon">
             <i class="ion ion-close"></i>
           </div>
-          <a href="{{ route('breply.inbox') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="{{ route('bookings.inbox') }}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->

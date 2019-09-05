@@ -22,10 +22,7 @@ Booking read
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title"></h3>
-              {{-- <div class="box-tools pull-right">
-                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Previous"><i class="fa fa-chevron-left"></i></a>
-                <a href="#" class="btn btn-box-tool" data-toggle="tooltip" title="Next"><i class="fa fa-chevron-right"></i></a>
-              </div> --}}
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body no-padding">
@@ -35,10 +32,19 @@ Booking read
               </div>
               <!-- /.mailbox-read-info -->
               <div class="mailbox-controls with-border text-center">
-                <div class="btn-group">
-                  <a href="" data-toggle="modal" data-target="#delete{{$booking->id}}"><button type="button" class="btn btn-danger btn-sm"> <i class="fa fa-trash-o"></i></button></a>
-                  
+                <div class="row">
+                  <div class="col-md-3">
+                    <a href="{{URL()->previous()}}" class="btn btn-primary pull-left"><i class="fa fa-angle-left"></i>Back</a>
+                  </div>
+                  <div class="col-md-5">
+                   
+                  </div>
+
+                  <div class="col-md-4">
+                  <a href="{{ route('breply.create',$booking->id) }}" class="btn btn-primary pull-right"><i class="fa fa-reply"></i>Reply</a>
                 </div>
+                </div>
+                
               </div>
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
@@ -62,14 +68,75 @@ Booking read
             <!-- /.box-footer -->
             <div class="box-footer">
               
-              <a href="{{ route('breply.create',$booking->id) }}" class="btn btn-primary pull-right"><i class="fa fa-reply"></i>Reply</a>
-              <a href="{{URL()->previous()}}" class="btn btn-primary pull-left"><i class="fa fa-angle-left"></i>Back</a>
-            </div>
+                
+                <?php $test = App\BookingStatus::where('booking_id', $booking->id)->orderBy('id','desc')->get()->first();
+                ?>
+
+                @if($test=='')
+                <div >
+                  <form action="{{ route('b.statusreply',$booking->id) }}" method="POST">
+                    @csrf
+                     <input type="hidden" class="form-control" name="emailto" value="{{$booking->email}}" >
+                     <input type="hidden" name="bstatus" value="1">
+                     <input type="hidden" name="replystatus" value="1">
+
+                  <div class="row">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                      <button type="submit" class="btn btn-success">Accept</button>
+                    </div>
+                  
+                  </div>
+                  </form>
+                  <div class="row">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-5">
+                       <form action="{{ route('b.statusreply',$booking->id) }}" method="POST">
+                    @csrf
+                     <input type="hidden" class="form-control" name="emailto" value="{{$booking->email}}" >
+                     <input type="hidden" name="bstatus" value="0">
+                     <input type="hidden" name="replystatus" value="1">
+
+                  <button type="submit" class="btn btn-danger " style="margin-top: -54px;">Reject</button>
+                  </form>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div>
+                 
+                </div>
+                @elseif($test->bstatus=='1')
+                  
+                <div >
+            
+                  <div class="alert-success " style="padding: 8px; width: 70px">Accepted</div></td>
+
+                </div>
+                @else
+                  
+                <div >
+
+                     <div class="alert-danger " style="padding: 8px; width: 70px">Rejected</div></td>
+                </div>
+
+                
+                @endif
+                
+              </div>
+                
+          
+
+          
             <!-- /.box-footer -->
-          </div>
+          
           <!-- /. box -->
         </div>
       </div>
+    </div>
+    
+
     </section>
   </div>
 </div>

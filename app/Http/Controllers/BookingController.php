@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\BookingFormMail; 
+use App\Mail\BookingAcceptedFormMail; 
+use App\Mail\BookingRejectedFormMail; 
+
+
 use App\Package;
 use App\Booking;
 use Carbon\Carbon;
 use DB;
 use App\BookingReply;
+use App\BookingStatus;
 
 class BookingController extends Controller
 {
@@ -23,6 +28,8 @@ class BookingController extends Controller
     	return view('cd-admin.home.bookings.bookinginbox',compact('bookings'));
     }
     public function bookinginboxshow(Booking $booking){
+         // $status = BookingStatus::all();
+
 
     	return view('cd-admin.home.bookings.bookingview',compact('booking'));
 
@@ -45,18 +52,13 @@ class BookingController extends Controller
 
     }
     public function binboxdestroy(Booking $booking){
-        $rep = BookingReply::all();
-        foreach($rep as $r){
-            if($booking->id==$r->booking_id){
-                $r->delete();
-            }
-        }
+        
         $booking->delete();
         return redirect('bookings/inbox')->with('error','Message Deleted Successfully!!');
     }
 
     public function breplycreate(Booking $booking)
-    {
+    {  
     	return view('cd-admin.home.bookings.bookingreply',compact('booking'));
     }
 
@@ -67,8 +69,7 @@ class BookingController extends Controller
             'emailto' => 'required|email',
             'subject' => 'required',
             'message' => 'required',
-            'active' => 'required',
-            'bookingstatus' => 'required'
+            'replystatus' => 'required',
         ]);
         $a = [];
         $a['created_at'] = Carbon::now();
@@ -81,6 +82,27 @@ class BookingController extends Controller
         
 
     }
+    public function statusreply($id){
+        $data = request()->validate([
+            'emailto' => 'required|email',
+            'bstatus' => 'required',
+            'replystatus' => 'required'
+        ]);
+        $a = [];
+        $a['created_at'] = Carbon::now();
+        $a['booking_id'] = $id;
+        $final = array_merge($a,$data);
+        DB::table('booking_statuses')->insert($final);
+
+        if($data['bstatus']=='1'){
+            Mail::to($data['emailto'])->send(new BookingAcceptedFormMail($data));
+            return redirect()->back()->with('success','Message replied successfully');
+        }else{
+             Mail::to($data['emailto'])->send(new BookingRejectedFormMail($data));
+            return redirect()->back()->with('success','Message replied successfully');
+
+        }
+    }
 
     public function breplyinbox(){
     	$bookings = BookingReply::orderBy('id','desc')->paginate(10);
@@ -89,12 +111,7 @@ class BookingController extends Controller
 
     public function breplydestroy(BookingReply $booking)
     {
-         $boo = Booking::all();
-        foreach($boo as $b){
-            if($booking->booking_id==$b->id){
-                $b->delete();
-            }
-        }
+        
         $booking->delete();
         return redirect('breplyinbox/')->with('error','Message Deleted Successfully!!');
     }

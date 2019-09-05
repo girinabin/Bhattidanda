@@ -41,7 +41,35 @@ Gallery Form
 									<div class="text text-danger">{{$errors->first('altimage')}}</div>
 										<label for="altimage">Alt Image</label>
 										<input type="text" name="altimage" value="{{old('altimage')}}" class="form-control" id="altimage" placeholder="Enter album altimage name">
+								</div>
+								<div class="form-group">
+									<div class="text text-danger">{{$errors->first('seotitle')}}</div>
+									<label for="seotitle">Seo Title</label>
+									<input type="text" class="form-control" name="seotitle" id="seotitle" value="{{old('seotitle')}}" placeholder="Enter Seo title : not more than 60 character">
+								</div>
+								<div class="form-group">
+									<div class="text text-danger">{{$errors->first('seokeyword')}}</div>
+									<label for="seokeyword">Seo Keyword</label>
+									<input type="text" class="form-control" name="seokeyword" id="seokeyword" value="{{old('seokeyword')}}" placeholder="Enter Seo keyword : not more than 60 character">
+								</div>
+								<div class="form-group">
+									<div class="text text-danger">{{$errors->first('seodescription')}}</div>
+									<label for="name">Seo Description</label>
+									<textarea name="seodescription" class="form-control summernote" placeholder="Enter Seo description : between 50-160 character"></textarea>
+								</div>
+								<div class="form-group">
+									<div class="text text-danger">{{$errors->first('active')}}</div>
+
+									<label for="active">Album Status</label>
+									<div class="radio">
+										<label>
+											<input type="radio" name="active"  value="1"{{old('active')=='1'?'checked':''}}>Available<br>
+					
+											<input type="radio" name="active"  value="0"{{old('active')=='0'?'checked':''}} >UnAvailable<br>
+										</label>
 									</div>
+								</div>
+
 								<div class="box-footer">
 									<button type="submit" class="btn btn-primary">Add Album</button>
 								</div>

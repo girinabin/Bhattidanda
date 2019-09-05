@@ -13,17 +13,17 @@ class DashboardController extends Controller
 {
     public function index(){
     	$book = DB::table('bookings')->get();
-    	$reply = DB::table('booking_replies')->get();
+    	$reply = DB::table('booking_statuses')->get();
     	$count = 0;
     	$acc = 0;
     	$rej = 0;
 
     	foreach($book as $b){
-    	$reply = DB::table('booking_replies')->where('booking_id',$b->id)->get();
+    	$reply = DB::table('booking_statuses')->where('booking_id',$b->id)->get();
     	foreach($reply as $r){
 
     		if($r->booking_id==$b->id)
-    		{	if($r->bookingstatus=='0'){
+    		{	if($r->bstatus=='0'){
 
     			         $rej++;
 

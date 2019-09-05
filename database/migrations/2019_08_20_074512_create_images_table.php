@@ -18,6 +18,7 @@ class CreateImagesTable extends Migration
             $table->unsignedInteger('album_id');
             $table->string('image');
             $table->string('altimage');
+            $table->string('active');
             $table->timestamps();
         });
     }

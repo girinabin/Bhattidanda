@@ -34,17 +34,36 @@ Gallery Show
                 <div class="box-body">
                   <div class="row ">
                    @foreach($albums as $album)
-                    <div class="col-md-4 rowedit">
-                      <figure style='border:1px solid '>
+                    <div class="col-md-4 {{-- rowedit --}}">
+                      <figure {{-- style='border:1px solid ' --}}>
                       <img src="{{asset('public/uploads/album/'.$album->image)}}" alt="" height="350px" width="350px">
                       <figcaption style='text-align: center'>{{e($album->name)}}</figcaption>
                       {{-- <button class="btn btn-danger pull-right buttonedit">Delete</button> --}}
-                      <a href="{{ route('images.show',$album->id) }}"><button class="btn btn-primary pull-left buttonedit">View</button></a>
+                      <a href="{{ route('images.show',$album->id) }}"><button class="btn btn-primary pull-left btn-sm"><i class="fa fa-eye"></i></button></a>
                       
-                      <a href="{{ route('gallery.create',$album->id) }}"><button style="margin-left: 2px;" class="btn btn-primary pull-left buttonedit">Add Image</button></a>
-                     
+                      <a href="{{ route('gallery.create',$album->id) }}"><button {{-- style="margin-left: 2px;" --}} class="btn btn-primary pull-left btn-sm {{-- buttonedit --}}">Add Image</button></a>
+                     <div class="btn-group">
+                            @if($album->active=='Active')
+                          <button type="button" class="btn btn-success btn-sm">{{$album->active}}</button>
+                          @else
+                          <button type="button" class="btn btn-danger btn-sm ">{{$album->active}}</button>
+                          @endif
 
-                      <a href="" data-toggle="modal" data-target="#delete{{$album->id}}"><button class="btn btn-danger pull-right buttonedit">Delete</button></a>
+                          <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span> 
+                          <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu" role="menu">
+                          <form action="" method="post">
+                              @csrf
+                      
+                            <button type="submit" class="btn btn-secondary">{{$album->active =='Active' ? 'Inactive' : 'Active'}}</button>
+                            </form>
+                      
+                          </ul>
+                        </div>
+
+                      <a href="" data-toggle="modal" data-target="#delete{{$album->id}}"><button class="btn btn-danger pull-right btn-sm"><i class="fa fa-trash"></i></button></a>
                       </figure>
                     </div>
                 @endforeach 

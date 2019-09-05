@@ -63,6 +63,18 @@ Gallery Form
 										<label for="altimage">Alt Image</label>
 										<input type="text" class="form-control" name="altimage" value="{{old('altimage')}}" id="altimage" placeholder="Enter altimage name">
 								</div>
+								<div class="form-group">
+									<div class="text text-danger">{{$errors->first('active')}}</div>
+
+									<label for="active">Image Status</label>
+									<div class="radio">
+										<label>
+											<input type="radio" name="active"  value="1"{{old('active')=='1'?'checked':''}}>Available<br>
+					
+											<input type="radio" name="active"  value="0"{{old('active')=='0'?'checked':''}} >UnAvailable<br>
+										</label>
+									</div>
+								</div>
 								<div class="box-footer">
 									<button type="submit" class="btn btn-primary">Add Image</button>
 								</div>
