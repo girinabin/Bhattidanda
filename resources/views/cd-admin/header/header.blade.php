@@ -2,7 +2,7 @@
     <!-- Logo -->
     <a href="{{ route('dashboard') }}" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b>EG</b></span>
+        <span class="logo-mini"><b>BD</b></span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg"><b>Bhatti</b>danda</span>
     </a>
@@ -20,7 +20,12 @@
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{asset('public/cd-admin/creatu/dist/img/avatar5.png')}}" class="user-image" alt="User Image">
-                        <span class="hidden-xs">ADMIN</span>
+                        <?php $user = Auth::user();
+                        ?>
+                        
+                    
+                        <span class="hidden-xs">{{$user->name}}</span>
+                        
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -29,7 +34,9 @@
 
                             <p>
                            
-                                <small>test</small>
+                                <small>{{$user->name}}</small>
+                                <small>{{$user->role}}</small>
+
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -38,7 +45,7 @@
                                 <a href="#" class="btn btn-info btn-flat">Profile</a>
                             </div> --}}
                             <div class="pull-right">
-                                <a href="{{url('adminlogout')}}" class="btn btn-danger btn-flat">Sign out</a>
+                                <a href="{{ route('logout') }}" class="btn btn-danger btn-flat">Log out</a>
                             </div>
                         </li>
                     </ul>
@@ -78,8 +85,10 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="active"><a href="#"><i class="fa fa-circle-o"></i>Add New Admin</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o"></i>View All Admin</a></li>
+                    @if(Auth::user()->role=='SuperAdmin')
+                    <li class="active"><a href="{{ route('admin.add') }}"><i class="fa fa-circle-o"></i>Add New Admin</a></li>
+                    @endif
+                    <li><a href="{{ route('admin.index') }}"><i class="fa fa-circle-o"></i>View All Admin</a></li>
                 </ul>
             </li>
 
@@ -200,14 +209,27 @@
                 </a>
                 <ul class="treeview-menu">
                    {{--  <li class="active"><a href="{{route('about')}}"><i class="fa fa-circle-o"></i>Add About</a></li> --}}
-                    <li><a href="{{route('showabout')}}"><i class="fa fa-circle-o"></i>Show About</a></li>
+                    <li><a href="{{route('aboutdetail')}}"><i class="fa fa-circle-o"></i>Show About</a></li>
                 </ul>
             </li>
-            <li class="header">Contact</li>
+            <li class="header">Introduction</li>
+             <li class="treeview">
+                <a href="#">
+                    <i class="fa  fa-navicon"></i> <span>Introduction</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                   
+                    <li><a href="{{route('intro.view')}}"><i class="fa fa-circle-o"></i>View Introduction</a></li>
+                </ul>
+            </li>
+            <li class="header">Message</li>
             
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-envelope"></i> <span>Contact</span>
+                    <i class="fa fa-envelope"></i> <span>Message</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>

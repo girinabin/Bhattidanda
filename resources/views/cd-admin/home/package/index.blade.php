@@ -52,7 +52,7 @@ Package Show
                           <span class="caret"></span> 
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
+                          <ul class="dropdown-menu" role="menu" style="min-width: 0px;">
                           <form action="{{ route('status.package',$package->id) }}" method="post">
                               @csrf
                       
@@ -157,13 +157,12 @@ Package Show
             </div>
             <div class="box-footer">
               <button type="submit" class="btn btn-primary">Update</button>
+              <button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
             </div>
           </form>
         </div>
       </div>
-      <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+     
     </div>
   </div>
 </div>

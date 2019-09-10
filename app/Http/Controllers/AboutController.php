@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Input;
 use App\Knowabout;
 use App\Traits\imagefileTrait;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class AboutController extends Controller
 {   
@@ -19,8 +20,12 @@ class AboutController extends Controller
        
         return view('cd-admin.home.about.aboutshow',compact('about'));
     }
-    public function aboutdetail($id){
-        $about = DB::table('knowabouts')->where('id',$id)->get()->first();
+    // public function aboutdetail($id){
+    //     $about = DB::table('knowabouts')->where('id',$id)->get()->first();
+    //     return view('cd-admin.home.about.aboutdetail',compact('about'));
+    // }
+    public function aboutdetail(){
+        $about = DB::table('knowabouts')->get()->first();
         return view('cd-admin.home.about.aboutdetail',compact('about'));
     }
 
@@ -40,27 +45,83 @@ class AboutController extends Controller
         $about->save();
         return redirect('/aboutshow')->with('success','Data Added Succesfully!');
     }
-    public function aboutupdate($id){    	
+    // public function aboutupdate(){    	
+    //     $request = Request()->all();
+    //     $vald = $this->uvalidateRequest();
+    //     $about = DB::table('knowabouts')->get()->first();
+    // 	$about->name = $request['name'];
+    //     $about->tagline = $request['tagline'];
+    //     if(request()->hasFile('image'))
+    //     {
+    //         $nabin = $this->getImage($request['image']);
+    //         $about['image']= $nabin;
+    //     };
+    //     if(request()->hasFile('pdf')){
+    //     $nabinpdf = $this->getPdf($request['pdf']);
+    //     $about['pdf'] = $nabinpdf;
+    // };
+    //     $about->altimage = $request['altimage'];
+    //     $about->description = $request['description'];
+    //     $about->video = $request['video'];
+    //     // $about->save();
+    //     DB::table('knowabouts')->update([);
+    //     return redirect('aboutdetail/'.$about->id)->with('success','Data Updated Succesfully!');
+    // }
+    public function aboutupdate(){
         $request = Request()->all();
-        $vald = $this->uvalidateRequest();
-        $about = Knowabout::where('id',$id)->get()->first();
-    	$about['name'] = $request['name'];
-        $about['tagline'] = $request['tagline'];
-        if(request()->hasFile('image'))
-        {
-            $nabin = $this->getImage($request['image']);
-            $about['image']= $nabin;
-        };
-        if(request()->hasFile('pdf')){
-        $nabinpdf = $this->getPdf($request['pdf']);
-        $about['pdf'] = $nabinpdf;
-    };
-        $about['altimage'] = $request['altimage'];
-        $about['description'] = $request['description'];
-        $about['video'] = $request['video'];
-        $about->save();
-        return redirect('aboutdetail/'.$about->id)->with('success','Data Updated Succesfully!');
+        $about = Knowabout::first();
+        if(isset($request['image'])){
+        
+            $a = [];
+            $a['updated_at'] = Carbon::now();
+            $data = $this->uvalidateRequest();
+            if(file_exists('public/uploads/about/'.$about->image)){
+                unlink('public/uploads/about/'.$about->image);
+            }
+            $file = $request['image'];
+            $fileName = time().$file->getClientOriginalName();
+            $destination = public_path('uploads/about');
+            $file->move($destination,$fileName);
+            $a['image'] = $fileName;
+
+            
+
+            $final = array_merge($data,$a);
+            DB::table('knowabouts')->update($final);
+
+        }
+         elseif(isset($request['pdf'])){
+            $a = [];
+            $a['updated_at'] = Carbon::now();
+            $data = $this->uvalidateRequest();
+       
+            if(file_exists('public/uploads/about/'.$about->pdf)){
+                unlink('public/uploads/about/'.$about->pdf);
+            }
+
+            $files = $request['pdf'];
+            $fileNames = time().$files->getClientOriginalName();
+            $destination = public_path('uploads/about');
+            $files->move($destination,$fileNames);
+            $a['pdf'] = $fileNames;
+            
+            
+        $final = array_merge($data,$a);
+        DB::table('knowabouts')->update($final); 
+
+         }
+        else{
+
+        $a = [];
+        $a['updated_at'] = Carbon::now();
+        $data = $this->uvalidateRequest();            
+        $final = array_merge($data,$a);
+        DB::table('knowabouts')->update($final);  
+
+        }
+        return redirect('aboutdetail/')->with('success','Data Updated Succesfully!');
     }
+
     public function destroy(Knowabout $about){
         if(file_exists('public/uploads/about/'.$about->image)){
             unlink('public/uploads/about/'.$about->image);

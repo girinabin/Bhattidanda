@@ -18,35 +18,47 @@ Service Detail
 		<!-- Main content -->
 		<section class="content">
 			<div class="row">
-				<div class="col-md-3"></div>
-				<div class="col-md-6 text-center textedit">
-					<img src="{{asset('public/uploads/service/'.$service->image)}}" alt="" class="rounded-circle" height="350px" width="350px">
+				<div class="col-md-12">
+          	<div class="box box-primary">
+
+
+
+				<div class="col-md-4">
+					<img class="img-responsive" src="{{asset('public/uploads/service/'.$service->image)}}" alt="" class="rounded-circle" height="350px" width="350px" style="margin-top: 20px;">
+				</div>
+				<div class="col-md-5 ">
 					<h2>{{e($service->name)}}</h2>
+					
+					<p>{{e($service->summary)}}</p>
+					
 				</div>
 				<div class="col-md-3"></div>
 				
-			</div>
 			
 			<div class="row">
 				<div class="col-md-12">
-					<p>{{e($service->summary)}}</p>
-					<div class="box-button">
+					<div class="col-md-12">
+					<div class="box-button box-footer">
 						@if($service->active == 'Available')
-						<button class="btn btn-success">{{($service->active)}}</button>
+						<div class="alert-success " style="padding: 8px; width: 70px">{{$service->active}}</div>
 						@else
-						<button class="btn btn-danger">{{($service->active)}}</button>
+						
+						<div class="alert-danger " style="padding: 8px; width: 85px">{{$service->active}}</div>
 						@endif
 
 					
 
-						<a href="" data-toggle="modal" data-target="#delete{{$service->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: 3px;">Delete</button></a>
+						<a href="" data-toggle="modal" data-target="#delete{{$service->id}}"><button class="btn btn-danger pull-right " style="margin-top: -34px;">Delete</button></a>
 
 					</div>
+				</div>
 					
  
 				</div>
 				
 			</div>
+		</div>
+	</div>
 		</section>
 	</div>
 </div>

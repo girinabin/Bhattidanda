@@ -37,24 +37,27 @@ class ReviewController extends Controller
 
     }
 
-    public function destroy(Review $review){
-    	$review->delete();
-    	return redirect('reviews');
+   
 
-    }
-
-    public function checkstatus(Review $review){
-        if($review->active == 'Active'){
-            $review->update([
+    public function rstatus(Review $rev){
+    
+        if($rev->active == 'Active'){
+            $rev->update([
                 'active' => 0
             ]);
         }else{
-            $review->update([
+            $rev->update([
                 'active' => 1
             ]);
 
         }
         return redirect()->back();
+    }
+
+     public function destroy(Review $review){
+        $review->delete();
+        return redirect('reviews');
+
     }
 
     public function validateRequest(){

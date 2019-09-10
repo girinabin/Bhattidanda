@@ -51,7 +51,7 @@ Show Services
                           <span class="caret"></span> 
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
+                          <ul class="dropdown-menu" role="menu" style="min-width: 0px;">
                           <form action="{{ route('status.service',$services->id) }}" method="post">
                               @method('PATCH')
                               @csrf
@@ -140,7 +140,7 @@ Show Services
                 <div class="text text-danger">{{$errors->first('summary')}}</div>
 
                   <label for="name">Service Summary</label>
-                  <textarea name="summary" class="form-control" name="summary"  >{{$services->summary }}</textarea>
+                  <textarea style="height: 150px;" name="summary" class="form-control" name="summary"  >{{$services->summary }}</textarea>
                 </div>
               <div class="form-group">
                 <div class="text text-danger">{{$errors->first('active')}}</div>

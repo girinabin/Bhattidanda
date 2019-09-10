@@ -31,11 +31,14 @@ Carousel Show
                 <div class="box-body">
                   <div class="row ">
                     @foreach($carousel as $carousels)
-                    <div class="col-md-4 rowedit">
-                      <img src="{{asset('public/uploads/carousel/'.$carousels->image)}}"  alt="" height="300px" width="300px">
-                      <a href="{{ route('carousels.show',$carousels->id) }}"><button class="btn btn-primary pull-left buttonedit">View</button></a>
-                      <a href="" data-toggle="modal" data-target="#delete{{$carousels->id}}"><button class="btn btn-danger pull-right buttonedit">Delete</button></a>
+                    <div class="col-md-4">
+                     
+                      <img class="img-responsive" src="{{asset('public/uploads/carousel/'.$carousels->image)}}"  style="height: 350px; width: 350px; ">
+                      <a href="{{ route('carousels.show',$carousels->id) }}"><button class="btn btn-primary pull-left btn-sm" style="margin-top: 2px;"><i class="fa fa-eye"></i></button></a>
+                      <a href="" data-toggle="modal" data-target="#delete{{$carousels->id}}"><button class="btn btn-danger pull-right btn-sm " style="margin-top: 2px; margin-bottom: 5px;"><i class="fa fa-trash"></i></button></a>
+                    
                     </div>
+
                     
                     @endforeach
                     

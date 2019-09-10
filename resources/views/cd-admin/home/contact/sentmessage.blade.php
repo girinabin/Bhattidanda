@@ -12,7 +12,7 @@ Contact Sent message
       Contact Sent Message
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Sent message</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Message/Sent message</li>
       </ol>
     </section>
     <!-- Main content -->

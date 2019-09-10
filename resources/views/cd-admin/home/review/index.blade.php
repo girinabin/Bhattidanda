@@ -49,19 +49,20 @@ ShowReview
 														<td>
 							<div class="btn-group">
                            @if($reviews->active=='Active')
-                          <button type="button" class="btn btn-success">{{$reviews->active}}</button>
+                          <button type="button" class="btn btn-success bsize">{{$reviews->active}}</button>
                           @else
-                          <button type="button" class="btn btn-danger">{{$reviews->active}}</button>
+                          <button type="button" class="btn btn-danger bsize">{{$reviews->active}}</button>
                           @endif
 
                           <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span> 
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
-                          <form action="{{ route('review.status',$reviews->id) }}" method="POST">
-                              {{-- @method('PATCH') --}}
-                              @csrf
+                          <ul class="dropdown-menu" role="menu" style="min-width: 0px;">
+                          <form action="{{ route('rev.stat',$reviews->id) }}" method="POST">
+                          	@csrf
+                          	@method('PATCH')
+                              
                       
                             <button type="submit" class="btn btn-secondary">{{$reviews->active =='Active' ? 'Inactive' : 'Active'}}</button>
                            </form>
@@ -158,13 +159,12 @@ ShowReview
 						</div>
 						<div class="box-footer">
 							<button type="submit" class="btn btn-primary">Update</button>
+							<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Close</button>
 						</div>
 					</form>
 				</div>
 			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			</div>
+			
 		</div>
 	</div>
 </div>

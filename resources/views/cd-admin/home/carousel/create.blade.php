@@ -60,7 +60,7 @@ Carousel Form
 								</div>
 							</div>
 						</form>
-						<div class="box-footer">
+						<div class="box-footer bn">
 									<a href="{{ URL()->previous() }}"><button class="btn btn-danger pull-right">Cancel</button></a>
 						</div>
 

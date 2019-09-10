@@ -25,11 +25,13 @@ Review Details
 							
 							<h3 class="profile-username text-center">{{e($review->name)}}</h3>
 							<p class="text-muted text-center">{{$review->address}}</p>
+							<div class="text-center">
 							<p>{{e($review->summary)}}</p>
+							</div>
 							@if($review->active == 'Active')
-							<button class="btn btn-success pull-right">{{$review->active}}</button>
+							<div class="alert-success " style="padding: 8px; width: 70px">{{$review->active}}</div>
 							@else
-							<button class="btn btn-danger pull-right">{{$review->active}}</button>
+							<div class="alert-danger " style="padding: 8px; width: 85px">{{$review->active}}</div>
 							@endif
 
 

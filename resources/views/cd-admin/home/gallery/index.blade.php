@@ -1,13 +1,13 @@
 @extends('cd-admin.home-master')
 @section('page-title')
-Gallery Show
+Albums Show
 @endsection
 @section('content')
 <div class="content-wrapper">
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Gallery
+      Albums
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/View All Gallery</li>
@@ -34,28 +34,27 @@ Gallery Show
                 <div class="box-body">
                   <div class="row ">
                    @foreach($albums as $album)
-                    <div class="col-md-4 {{-- rowedit --}}">
-                      <figure {{-- style='border:1px solid ' --}}>
-                      <img src="{{asset('public/uploads/album/'.$album->image)}}" alt="" height="350px" width="350px">
-                      <figcaption style='text-align: center'>{{e($album->name)}}</figcaption>
-                      {{-- <button class="btn btn-danger pull-right buttonedit">Delete</button> --}}
-                      <a href="{{ route('images.show',$album->id) }}"><button class="btn btn-primary pull-left btn-sm"><i class="fa fa-eye"></i></button></a>
+                    <div class="col-md-4 " style="padding-top: 10px;">
+                      <figure >
+                      <img  class="img-responsive" src="{{asset('public/uploads/album/'.$album->image)}}" alt="" style="height: 350px; width: 350px; ">
+                      <figcaption style='text-align: center'><b>{{e($album->name)}}</b></figcaption>
                       
-                      <a href="{{ route('gallery.create',$album->id) }}"><button {{-- style="margin-left: 2px;" --}} class="btn btn-primary pull-left btn-sm {{-- buttonedit --}}">Add Image</button></a>
-                     <div class="btn-group">
+                      
+                      <a href="{{ route('gallery.create',$album->id) }}"><button  class="btn btn-primary pull-left btn-sm ">Add Image</button></a>
+                     <div class="btn-group" style="padding-left: 3px;">
                             @if($album->active=='Active')
                           <button type="button" class="btn btn-success btn-sm">{{$album->active}}</button>
                           @else
                           <button type="button" class="btn btn-danger btn-sm ">{{$album->active}}</button>
                           @endif
 
-                          <button type="button" class="btn btn dropdown-toggle" data-toggle="dropdown">
+                          <button type="button" class="btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
                           <span class="caret"></span> 
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
-                          <form action="" method="post">
-                              @csrf
+                          <ul class="dropdown-menu"  role="menu" style="min-width: 0px;">
+                          <form action="{{ route('s.album',$album->id) }}" method="POST">
+                            @csrf
                       
                             <button type="submit" class="btn btn-secondary">{{$album->active =='Active' ? 'Inactive' : 'Active'}}</button>
                             </form>
@@ -64,6 +63,7 @@ Gallery Show
                         </div>
 
                       <a href="" data-toggle="modal" data-target="#delete{{$album->id}}"><button class="btn btn-danger pull-right btn-sm"><i class="fa fa-trash"></i></button></a>
+                      <a href="{{ route('images.show',$album->id) }}"><button class="btn btn-primary pull-right btn-sm" style="margin-right: 3px;"><i class="fa fa-eye"></i></button></a>
                       </figure>
                     </div>
                 @endforeach 

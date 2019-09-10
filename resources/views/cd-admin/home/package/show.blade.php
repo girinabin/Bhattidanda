@@ -20,10 +20,12 @@ Package Details
 			<div class="row">
 		<div class="col-md-12">
           	<div class="box box-primary">
-				<div class="col-md-3"></div>
-				<div class="col-md-6 text-center textedit">
-					<h2>{{ e($package->name) }} </h2>
-					<img src="{{asset('public/uploads/package/'.$package->image)}}" alt="" class="rounded-circle" height="350px" width="350px">
+				<div class="col-md-4">
+					<img class="img-responsive" src="{{asset('public/uploads/package/'.$package->image)}}" alt="" class="rounded-circle" height="350px" width="350px;" style="margin-top: 20px;">
+				</div>
+				<div class="col-md-5">
+					<h2 >{{ e($package->name) }} </h2>
+					
 						<p>{!! $package->description !!}</p>
 					
 				</div>
@@ -32,13 +34,13 @@ Package Details
 					<div class="col-md-12">
 						<div class="col-md-12">
 								
-						<div class="box-button" style="padding-bottom:5px;">
+						<div class="box-button box-footer" >
 						@if($package->active == 'Available')
-						<button class="btn btn-success">{{($package->active)}}</button>
+						<div class="alert-success " style="padding: 8px; width: 70px">{{$package->active}}</div>
 						@else
-						<button class="btn btn-danger">{{($package->active)}}</button>
+						<div class="alert-danger " style="padding: 8px; width: 85px">{{$package->active}}</div>
 						@endif
-						<a href="" data-toggle="modal" data-target="#delete{{$package->id}}"><button class="btn btn-danger pull-right  ">Delete</button></a>
+						<a href="" data-toggle="modal" data-target="#delete{{$package->id}}"><button class="btn btn-danger pull-right  " style="margin-top: -34px;">Delete</button></a>
 						</div>
 						</div>
 

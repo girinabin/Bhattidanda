@@ -69,7 +69,7 @@ Seo Form
 								
 							</div>
 						</form>
-						<div class="box-footer">
+						<div class="box-footer bn">
 							<a href="{{URL()->previous()}}"><button type="button" class="btn btn-danger pull-right">Cancel</button></a>
 						</div>
 					</div>

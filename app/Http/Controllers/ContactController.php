@@ -77,8 +77,8 @@ class ContactController extends Controller
      { 
 
         $data = request()->validate([
-            'emailto' => 'required|email|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
-            'subject' => 'required|regex:/^[ ,.A-Za-z0-9\?\\\'\"\_~\-!@#\$%\^&\*\(\)]+$/',
+            'emailto' => 'required|email',
+            'subject' => 'required',
             'message' => 'required',
             'active' => 'required'
         ]);

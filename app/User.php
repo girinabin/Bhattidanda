@@ -15,9 +15,17 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    // protected $fillable = [
+    //     'name', 'email', 'password',
+    // ];
+    protected $guarded = [];
+
+    public function getroleAttribute($attribute){
+        return[
+            0 => 'Admin',
+            1 =>'SuperAdmin'
+        ][$attribute];
+    }
 
     /**
      * The attributes that should be hidden for arrays.

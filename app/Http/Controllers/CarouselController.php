@@ -45,11 +45,11 @@ class CarouselController extends Controller
             unlink('public/uploads/carousel/'.$carousel['image']);
         }
         $carousel->delete();
-        Session::flash('deleted');
+        // Session::flash('deleted');
         return redirect('/carousels')->with('error','Data Deleted Successfully!');
 
     }
-    public function status(Carousel $stat){
+    public function cstatus(Carousel $stat){
         if($stat->active == 'Active'){
             $stat->update([
                 'active' => 0

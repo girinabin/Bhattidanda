@@ -7,10 +7,18 @@ use App\Knowabout;
 use DB;
 use Carbon\Carbon;
 use App\QuickReply;
+use Auth;
+use App\Introduction;
 // use App\BookingReply;
 
 class DashboardController extends Controller
-{
+{  
+    public function logout(){
+
+        Auth::logout();
+        return redirect()->back()->with('success','Logout Successfull');
+    }
+
     public function index(){
     	$book = DB::table('bookings')->get();
     	$reply = DB::table('booking_statuses')->get();
@@ -84,6 +92,40 @@ class DashboardController extends Controller
     public function qdestroy(QuickReply $quick){
     	$quick->delete();
     	return redirect('/quickreplysent')->with('error','Message Delted Successfully');
+
+    }
+
+    public function introcreate(){
+        return view('cd-admin.home.introduction.introform');
+    }
+
+    public function introstore(){
+        // $request = Request()->all();
+        $data = request()->validate([
+            'description' => 'required'
+        ]);
+        $a = [];
+        $a['created_at'] = Carbon::now();
+        $final = array_merge($data,$a);
+        DB::table('introductions')->insert($final);
+        return redirect()->back();
+        
+    }
+    public function introview(){
+        $intro = Introduction::first();
+        return view('cd-admin.home.introduction.introview',compact('intro'));
+    }
+
+    public function introupdate(){
+        // $into = Introduction::first();
+        $data = request()->validate([
+            'description' => 'required'
+        ]);
+        $a = [];
+        $a['updated_at'] = Carbon::now();
+        $final = array_merge($data,$a);
+        DB::table('introductions')->update($final);
+        return redirect('introview')->with('success','Introduction Updated');
 
     }
 }

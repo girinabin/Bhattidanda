@@ -39,6 +39,7 @@ class BookingController extends Controller
         
     public function packagebook(){
         $request = Request()->all();
+        $data= $this->rval();
         $book = new Booking();
         $book['name'] = $request['name'];
         $book['email'] = $request['email'];
@@ -50,6 +51,18 @@ class BookingController extends Controller
         $book->save();
         return redirect()->back();
 
+    }
+    public function rval(){
+        return request()->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'age'=>'required',
+            'location'=>'required',
+            'contact'=>'required',
+            'message'=>'required',
+            'slug'=>'required',
+
+        ]);
     }
     public function binboxdestroy(Booking $booking){
         

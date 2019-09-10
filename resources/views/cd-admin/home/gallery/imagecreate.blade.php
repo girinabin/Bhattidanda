@@ -35,11 +35,13 @@ Gallery Form
 							<div class="box-body">
 
 								<div class="form-group">
-									<label for="albumselect">Album Name</label>
+									<strong>Album Name:</strong>{{$album['name']}}
+									<input type="hidden" name="albumselect" value="{{$album['id']}}">
+									{{-- <label for="albumselect">Album Name</label>
 									<select name="albumselect" id="" class="form-control">
 									<option value="{{$album['id']}}" name="albumselect">{{$album['name']}}</option>
 									</select>
-									
+									 --}}
 									{{-- <strong>Album Name:</strong>
 									 {{$album['name']}}	
 									<input type="hidden" name="albumselect" value="{{$album['id']}}" readonly=""> --}}	

@@ -60,7 +60,7 @@ class PackageController extends Controller
             }
             $file = $request['image'];
             $fileName = time().$file->getClientOriginalName();
-            $destination = public_path('public/uploads/package');
+            $destination = public_path('uploads/package');
             $file->move($destination,$fileName);
             $a['image'] = $fileName;
             $final = array_merge($data,$a);
@@ -112,7 +112,7 @@ class PackageController extends Controller
     	$test =  request()->validate([
             
             
-    		'name' => 'required',
+    		'name' => 'required|unique:packages',
     		'altimage' => 'required',
             'description' => 'required',
     		'active' =>'required',

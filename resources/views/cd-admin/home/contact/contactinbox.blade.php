@@ -12,7 +12,7 @@ Contact inbox
      Contact Inbox
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Inbox</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Message/Inbox</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -42,14 +42,16 @@ Contact inbox
 
                         <a href="" data-toggle="modal" data-target="#delete{{$contact->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{route('contactview',$contact->id)}}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
-                        <button type="button" class="btn btn-info btn-sm">Unseen</button></td>
+                       <div class="alert-info notification">Unseen</div></td>
+                      </td>
 
 
                         @else($test->active=='Replyed')
 
                         <a href="" data-toggle="modal" data-target="#delete{{$contact->id}}"><button type="button" class="btn btn-default btn-sm"> <i class="fa fa-trash-o"></i></button></a>
                         <a href="{{route('contactview',$contact->id)}}"><button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i></button></a>
-                        <button type="button" class="btn btn-success btn-sm ">Replyed</button>
+                       <div class="alert-success notification">Replied</div></td>
+                       
 
 
                         @endif

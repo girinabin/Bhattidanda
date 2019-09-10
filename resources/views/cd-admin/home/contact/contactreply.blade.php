@@ -13,7 +13,7 @@ Contact Reply
       Contact Reply
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Inbox/View/Reply</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Message/<a href="{{ route('contactinbox') }}">Inbox</a>/View/Reply</li>
       </ol>
     </section>
     <!-- Main content -->
@@ -23,13 +23,7 @@ Contact Reply
           <div class="box-header">
             <i class="fa fa-envelope"></i>
             <h3 class="box-title">Quick Email</h3>
-            <!-- tools box -->
-           {{--  <div class="pull-right box-tools">
-              <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
-              title="Remove">
-              <i class="fa fa-times"></i></button>
-            </div> --}}
-            <!-- /. tools -->
+            
           </div>
           <div class="box-body">
             <form action="{{ route('contacts.mailreply',$contact->id) }}" method="POST">
@@ -46,23 +40,11 @@ Contact Reply
               <div>
                 <div class="text text-danger">{{$errors->first('message')}}</div>
 
-                <textarea class="textarea" placeholder="Message" name="message" id="summernote"
+                <textarea class="textarea summernote" placeholder="Message" name="message" 
                 style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
               </div>
-              <div class="form-group">
-                <div class="text text-danger">{{$errors->first('active')}}</div>
-                <label for="active">Status</label>
-                  <div class="radio">
-                    <label>
-                      
-                      <input type="radio" name="active"  value="1" checked >Replyed<br>
-                      
-
-                    </label>
-                  </div>
-                 
-
-              </div>
+            
+              <input type="hidden" name="active" value="1">
               <div class="box-footer clearfix">
                 <button type="submit" class="pull-right btn btn-default" id="sendEmail">Send
                 <i class="fa fa-arrow-circle-right"></i></button>

@@ -73,8 +73,8 @@ class GalleryController extends Controller
 
     }
     public function show(Album $image){
-        $img = DB::table('images')->where('album_id',$image->id)->orderBy('id','desc')->paginate(6);
-    	return view('cd-admin.home.gallery.show',compact('image','img'));
+        $imgs = Image::where('album_id',$image->id)->orderBy('id','desc')->paginate(6);
+    	return view('cd-admin.home.gallery.show',compact('image','imgs'));
 
     }
     public function destroy(Album $image){
@@ -102,9 +102,38 @@ class GalleryController extends Controller
     	$imagealbum->delete();
     	return redirect()->back()->with('error','Image Deleted Successfully');
     }
+
+    public function albumstatus(Album $alb){
+        if($alb->active == 'Active'){
+            $alb->update([
+                'active' => 0
+            ]);
+        }else{
+            $alb->update([
+                'active' => 1
+            ]);
+
+        }
+        return redirect()->back();
+    }
+
+    public function imagestatus(Image $img){
+        if($img->active == 'Active'){
+            $img->update([
+                'active' => 0
+            ]);
+        }else{
+            $img->update([
+                'active' => 1
+            ]);
+
+        }
+        return redirect()->back();
+    }
+
     private function validateRequest(){
     	return Request()->validate([
-    		'name' => 'required',
+    		'name' => 'required|unique:albums',
     		'altimage' => 'required',
     		'image' =>'required|mimes:png,jpg,jpeg,JPG,JPEG,PNG',
             'seotitle' =>'required|max:65',

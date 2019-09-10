@@ -29,11 +29,11 @@ Carousel Details
                 <!-- /.box-header -->
                 <div class="box-body">
                   <div class="row ">
-                    <div class="col-md-12 rowedit">
-                      <img src="{{asset('public/uploads/carousel/'.$carousel->image)}}" style="margin-left: 375px;" alt="" height="350px" width="350px">
+                    <div class="col-md-12 ">
+                      <img class="img-responsive" src="{{asset('public/uploads/carousel/'.$carousel->image)}}"  alt="" width="100%">
                       <p>{!!$carousel->description!!}</p>
 
-                          <div class="btn-group">
+                          <div class="btn-group box-footer">
                             @if($carousel->active=='Active')
                           <button type="button" class="btn btn-success">{{$carousel->active}}</button>
                           @else
@@ -44,10 +44,11 @@ Carousel Details
                           <span class="caret"></span> 
                           <span class="sr-only">Toggle Dropdown</span>
                           </button>
-                          <ul class="dropdown-menu" role="menu">
-                            <form action="{{ route('status.stat',$carousel->id) }}" method="POST">
+                          <ul class="dropdown-menu" role="menu" style="min-width: 0px;">
+                            <form action="{{ route('caro.stat',$carousel->id) }}" method="POST">
                               @csrf
-                              @method('PATCH')
+                              
+                            
                             <button type="submit" class="btn btn-secondary">{{$carousel->active =='Inactive' ? 'Active' : 'Inactive'}}</button>
                             </form>
                       
@@ -58,7 +59,7 @@ Carousel Details
                         <div>
 
                              
-                            <a href="" data-toggle="modal" data-target="#delete{{$carousel->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: 3px;">Delete</button></a>
+                            <a href="" data-toggle="modal" data-target="#delete{{$carousel->id}}"><button class="btn btn-danger pull-right button-edit " style="margin-top: -40px;">Delete</button></a>
                              
                         </div>
               

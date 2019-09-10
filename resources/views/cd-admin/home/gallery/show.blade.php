@@ -7,7 +7,7 @@ Image Show
   <div class="container-fluid">
     <section class="content-header">
       <h1>
-      Images
+      <strong>Album Name:</strong>{{$image->name}}
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-dashboard"></i> Dashboard/<a href="{{ route('images.index') }}">View All Gallery</a>/View</li>
@@ -32,11 +32,31 @@ Image Show
                 <div class="box-body">
                   <div class="row ">
             
-                    @foreach($img as $images)
-                      <div class="col-md-4 rowedit">
-                      <figure style="border: 1px solid">
-                      <img src="{{ asset('public/uploads/gallery/'.$images->image) }}" alt="" height="350px" width="350px">
-                      <a href="" data-toggle="modal" data-target="#delete{{$images->id}}"><button class="btn btn-danger pull-right buttonedit">Delete</button></a>
+                    @foreach($imgs as $img)
+                      <div class="col-md-4 " style="padding-top: 10px">
+                      <figure >
+                      <img class="img-responsive" src="{{ asset('public/uploads/gallery/'.$img->image) }}" alt="" style="height: 350px; width: 350px; ">
+                      <div class="btn-group" style="margin-top: 3px;">
+                          @if($img->active=='Active')
+                          <button type="button" class="btn btn-success btn-sm">{{$img->active}}</button>
+                          @else
+                          <button type="button" class="btn btn-danger btn-sm ">{{$img->active}}</button>
+                          @endif
+
+                          <button type="button" class="btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                          <span class="caret"></span> 
+                          <span class="sr-only">Toggle Dropdown</span>
+                          </button>
+                          <ul class="dropdown-menu"  role="menu" style="min-width: 0px;">
+                          <form action="{{ route('s.image',$img->id) }}" method="post">
+                              @csrf
+                      
+                            <button type="submit" class="btn btn-secondary">{{$img->active =='Active' ? 'Inactive' : 'Active'}}</button>
+                            </form>
+                      
+                          </ul>
+                        </div>
+                      <a href="" data-toggle="modal" data-target="#delete{{$img->id}}"><button class="btn btn-danger pull-right btn-sm" style="margin-top: 3px;"><i class="fa fa-trash"></i></button></a>
 
                       </figure>
                       </div>
@@ -47,7 +67,7 @@ Image Show
                   <div class="row">
                   <div class="col-md-10"></div>
                   <div class="col-md-2">
-                  {{ $img->links() }}
+                  {{ $imgs->links() }}
                     
                   </div>
                 </div>
@@ -65,8 +85,8 @@ Image Show
 
 
   
-  @foreach($img as $images)
-  <div id="delete{{$images->id}}" class="modal fade" role="dialog">
+  @foreach($imgs as $img)
+  <div id="delete{{$img->id}}" class="modal fade" role="dialog">
     <div class="modal-dialog">
       <!-- Modal content-->
       <div class="modal-content">
@@ -78,7 +98,7 @@ Image Show
           <h2> <p>Are you sure??</p> </h2>
         </div>
         <div class="modal-footer">
-          <form action="{{ route('imagealbums.destroy1',$images->id) }}" method="POST">
+          <form action="{{ route('imagealbums.destroy1',$img->id) }}" method="POST">
             @method('DELETE')
             @csrf
             

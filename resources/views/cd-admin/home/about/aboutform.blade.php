@@ -53,7 +53,7 @@ About Form
 										<div class="text text-danger">{{$errors->first('description')}}</div>
 
 										<label for="description">About Description</label>
-										<textarea name="description" class="form-control summernote"  value="{{old('descripiton')}}"></textarea>
+										<textarea name="description" class="form-control "  value="{{old('descripiton')}}"></textarea>
 									</div>
 									
 									<div class="form-group">
@@ -74,7 +74,7 @@ About Form
 
 								</div>
 							</form>
-							<div class="box-footer">
+							<div class="box-footer bn">
 									<a href="{{ URL()->previous() }}"><button class="btn btn-danger pull-right">Cancel</button></a>
 							</div>
 						</div>

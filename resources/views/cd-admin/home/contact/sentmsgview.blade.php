@@ -12,7 +12,7 @@ Sent message Details
       Sent message
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Contact/sent message/View</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Message/<a href="{{ route('messagesent') }}">sentmessage</a>/View</li>
       </ol>
     </section>
     <!-- Main content -->

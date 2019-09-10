@@ -29,3 +29,12 @@ hr{
 	width: 100%!important;
 	object-fit: contain!important;
 }
+
+
+.note-editor.note-frame .note-editable{
+	min-width: 500px;
+	height: auto;
+}
+.summernote-height-edit .note-toolbar-wrapper{
+	height: 75px!important;
+}

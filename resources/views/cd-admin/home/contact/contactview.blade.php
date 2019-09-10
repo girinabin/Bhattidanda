@@ -12,7 +12,7 @@ Contact read
       Contact
       </h1>
       <ol class="breadcrumb">
-        <li><i class="fa fa-dashboard"></i> Dashboard/Contact/Inbox/View</li>
+        <li><i class="fa fa-dashboard"></i> Dashboard/Message/<a href="{{ route('contactinbox') }}"></a>/View</li>
       </ol>
     </section>
     <!-- Main content -->

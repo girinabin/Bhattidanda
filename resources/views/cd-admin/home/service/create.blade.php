@@ -69,7 +69,7 @@ Services Form
 								<button type="submit" class="btn btn-primary">Submit</button>
 							</div>
 						</form>
-						<div class="box-footer">
+						<div class="box-footer bn">
 							<a href="{{ URL()->previous() }}">
 									<button type="submit" class="btn btn-danger pull-right">Cancel</button>
 							</a>

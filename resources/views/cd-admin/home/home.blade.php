@@ -123,7 +123,7 @@ Home
             <div class="box-header">
               <i class="fa fa-envelope"></i>
 
-              <h3 class="box-title">Quick Reply</h3>
+              <h3 class="box-title">Recent Reply</h3>
               <a href="{{ route('q.sent') }}"><button class="btn btn-primary pull-right">View all Quick Mail</button></a>
              
             </div>
