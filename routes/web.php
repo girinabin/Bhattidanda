@@ -71,6 +71,29 @@ Route::group(['middleware' => 'auth'], function (){
 
 
 
+// view composer
+
+
+View::composer('cd-admin.header.header', function ($view) {
+		$serv = DB::table('services')->count();
+    	$pack = DB::table('packages')->count();
+    	$gal =  DB::table('albums')->count();
+    	$cal = DB::table('carousels')->count();
+    	$seo = DB::table('seos')->count();
+    	$boo = DB::table('bookings')->count();
+        $reply = DB::table('booking_statuses')->count();
+      	$book = $boo - $reply;
+      	$coo = DB::table('contacts')->count();
+        $creply = DB::table('reply_contacts')->count();
+        $contact = $coo - $creply;
+        $review = DB::table('reviews')->count();
+
+
+
+
+      $view->with(['serv'=>$serv,'pack'=>$pack,'gal'=>$gal,'cal'=>$cal,'seo'=>$seo,'book'=>$book , 'contact'=>$contact,'review'=>$review] );
+});
+
 // Admin
 Route::get('adminadd/','AdminController@adminadd')->name('admin.add');
 Route::post('adminstore/','AdminController@adminstore')->name('admin.store');
@@ -202,7 +225,7 @@ Route::post('/qdestroy/{quick}','DashboardController@qdestroy')->name('qmessage.
 
 // seo
 
-Route::get('/seopages','SeoController@seopages')->name('seo.pages');
+// Route::get('/seopages','SeoController@seopages')->name('seo.pages');
 Route::get('/viewseo','SeoController@viewseo')->name('viewseo');
 Route::post('/seostore','SeoController@seostore')->name('seo.store');
 Route::post('/seoupdate/{seo}','SeoController@seoupdate')->name('seo.update');

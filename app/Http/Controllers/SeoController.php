@@ -23,7 +23,7 @@ class SeoController extends Controller
     		'seotitle' =>'required|max:65',
     		'seokeyword' => 'required|max:65',
     		'seodescription' => 'required|max:180',
-    		'page' => 'required'
+    		'page' => 'required|unique:seos'
     	]);
     }
     public function seostore(){
@@ -35,12 +35,22 @@ class SeoController extends Controller
     	DB::table('seos')->insert($final);
     	return redirect('/viewseo');
     }
+    public function uvalidateRequest(){
+        return Request()->validate([
+            'seotitle' =>'required|max:65',
+            'seokeyword' => 'required|max:65',
+            'seodescription' => 'required|max:180'
+            
+        ]);
+    }
     public function seoupdate(Seo $seo){
     	$request = Request()->all();
-    	$data = $this->validateRequest();
+    	$data = $this->uvalidateRequest();
+        
     	$a = [];
     	$a['updated_at'] = Carbon::now();
     	$final = array_merge($data,$a);
+        
     	DB::table('seos')->where('id',$seo->id)->update($final);
     	return redirect('/viewseo')->with('success','Seo Updated Successfully');
     }

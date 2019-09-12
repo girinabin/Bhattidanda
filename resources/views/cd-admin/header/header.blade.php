@@ -97,12 +97,13 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-search"></i> <span>Seo</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                        {{$seo}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{ route('seo.pages') }}"><i class="fa fa-circle-o"></i>SeoPages</a></li>
+                    {{-- <li><a href="{{ route('seo.pages') }}"><i class="fa fa-circle-o"></i>SeoPages</a></li> --}}
                     {{-- <li><a href="{{ route('packageseo') }}"><i class="fa fa-circle-o"></i>Package</a></li>
                     <li><a href="{{ route('aboutseo') }}"><i class="fa fa-circle-o"></i>About</a></li> --}}
                     <li><a href="{{ route('viewseo') }}"><i class="fa fa-circle-o"></i>ViewSeo</a></li>
@@ -116,8 +117,9 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i> <span>Services</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                       {{$serv}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -128,11 +130,13 @@
 
             <li class="header">Packages</li>
             
-            <li class="treeview">
+            <li class="treeview ">
                 <a href="#">
                     <i class="fa fa-clone"></i> <span>Packages</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+
+                    
+                    <span class="pull-right-container label label-primary">
+                        {{$pack}}<i class="{{-- fa fa-angle-left --}} pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -146,8 +150,10 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-file-image-o"></i> <span>Gallery</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="label label-primary pull-right-container ">
+                       {{$gal}}
+
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -162,8 +168,9 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa  fa-caret-square-o-left"></i> <span>Carousel</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                        {{$cal}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -176,8 +183,9 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-hand-pointer-o"></i> <span>Booking</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                        {{$book}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -190,8 +198,9 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa  fa-thumbs-o-up"></i> <span>Review</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                        {{$review}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
@@ -230,8 +239,9 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-envelope"></i> <span>Message</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
+                    <span class="pull-right-container label label-primary">
+                        {{$contact}}
+                        <i class=" pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">

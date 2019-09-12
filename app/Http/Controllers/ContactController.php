@@ -63,11 +63,23 @@ class ContactController extends Controller
 
     }
     public function destroy(Contact $contact){
+        $ca = ReplyContact::where('contact_id',$contact->id)->get();
+        foreach($ca as $cont){
+        
+            $cont->delete();
+        }
+    
         $contact->delete();
         return redirect('contactinbox')->with('error','Message Deleted Successfully!!');
     }
 
     public function sentdestroy(ReplyContact $message){
+        $c = Contact::where('id',$message->contact_id)->get();
+        foreach($c as $contact){
+            
+            $contact->delete();
+        }
+
         $message->delete();
         return redirect('messagesent')->with('error','Message Deleted Successfully!!');
     }

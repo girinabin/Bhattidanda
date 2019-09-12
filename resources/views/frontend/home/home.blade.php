@@ -1,4 +1,7 @@
 @extends('frontend.home-master')
+@section('title',$seo->seotitle)
+@section('keyword',$seo->seokeyword)
+@section('description',$seo->seodescription)
 @section('content')
 
 
@@ -37,22 +40,7 @@
 
 
 
-		{{-- <div class="item carousel-size">
-			<div class="text-center capitalize corpboot-wel">
-				<h2> Welcome to Bhattidanda Fresh & Natural, <br><br>Be more than a tourist, become a local </h2>
-				<a href="{{url('whyus')}}"><button type="button" class="btn btn-primary capitalize btn-slider">Know More</button></a>
-			</div>
-			<img src="{{url('public/images/bhattidandaimages/carousel3.png')}}" alt="">
-		</div>
-
-		<div class="item carousel-size">
-			<div class="text-center capitalize corpboot-wel">
-				<h2> Welcome to Bhattidanda Fresh & Natural, <br><br>Be more than a tourist, become a local </h2>
-				<a href="{{url('whyus')}}"><button type="button" class="btn btn-primary capitalize btn-slider">Know More</button></a>
-			</div>
-			<img src="{{url('public/images/bhattidandaimages/carousel4.jpg')}}" alt="">
-		</div>
- --}}
+ 
 	</div>
 
 	<!-- Left and right controls -->
@@ -163,26 +151,7 @@
 		</div>
 		@endforeach
 
-		{{-- <div class="col-md-3 text-center zoom-out-effect left glimpse-caption">
-			<div class="thumbnail img-box galleryimg">
-				<img src="{{url('public/images/service2.jpg')}}" class="img-responsive" alt="Nature" style="width:100%">
-			</div>
-			<p>Restaurants</p>
-		</div>
-
-		<div class="col-md-3 text-center zoom-out-effect left glimpse-caption">
-			<div class="thumbnail img-box galleryimg">
-				<img src="{{url('public/images/bhattidandaimages/local.jpg')}}" class="img-responsive" alt="Fjords" style="width:100%">
-			</div>
-			<p>Local Community</p>
-		</div>
-
-		<div class="col-md-3 text-center zoom-out-effect left glimpse-caption">
-			<div class="thumbnail img-box galleryimg">
-				<img src="{{url('public/images/service4.jpg')}}" class="img-responsive" alt="Fjords" style="width:100%">
-			</div>
-			<p>Treks and Tours</p>
-		</div> --}}
+	
 	</div>
 </div>
 

@@ -15,46 +15,7 @@
 </div>
 
 
-<!-- <div class="container">
-		<div class="col-md-4">
-			<div class="thumbnail text-center" id="demo">
-				<a href="{{url('public/images/room2.jpg')}}" class="flipLightBox"><img src="{{url('public/images/room2.JPG')}}" class="img-responsive" alt="room2" style="width:300"></a>
-				<a href="{{url('public/images/room2.jpg')}}" class="flipLightBox"><img src="{{url('public/images/room2.JPG')}}" class="img-responsive" alt="room2" style="width:300"></a>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail text-center">
-				<a href="{{url('public/images/room2.JPG')}}" class="flipLightBox-3"><img src="{{url('public/images/room2.JPG')}}" class="img-responsive" alt="room2" style="width:300"></a>
-			</div>
-		</div>
-		<div class="col-md-4">
-			<div class="thumbnail text-center">
 
-				<img src="{{url('public/images/room 3.JPG')}}" class="img-responsive" alt="room3" style="width:300">
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="thumbnail text-center">
-
-				<img src="{{url('public/images/room 5.JPG')}}" class="img-responsive" alt="room5" style="width:300">
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="thumbnail text-center">
-
-				<img src="{{url('public/images/room 5.JPG')}}" class="img-responsive" alt="" style="width:300">
-			</div>
-		</div>
-
-		<div class="col-md-4">
-			<div class="thumbnail text-center">
-
-				<img src="{{url('public/images/room 5.JPG')}}" class="img-responsive" alt="Fjords" style="width:300">
-			</div>
-		</div>
-	</div> -->
 	<div class="container" style="text-align: center;">
 		<div class="room-inline room-pad">
 			<a href="{{url('public/images/room2.JPG')}}" class="flipLightBox ">

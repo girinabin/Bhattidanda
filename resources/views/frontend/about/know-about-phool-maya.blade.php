@@ -1,4 +1,8 @@
 @extends('frontend.home-master')
+@section('title',$seo->seotitle)
+@section('keyword',$seo->seokeyword)
+@section('description',$seo->seodescription)
+
 
 @section('content')
 
@@ -23,15 +27,7 @@
 		</div>
 	<div>
 		<p class="text">{{$about->description}}</p>
-		{{-- <p class="text"><strong>Phool Maya Tamang</strong> Tamang belongs to a village in Nepal where girls are uneducated, restricted to household chores and allowed to work only in the fields. They have no avenues to achieve something big in their lives. Having faced sorrows and wanting a better life for her daughter and other women, <strong>Phool Maya</strong> decided to bring change in the village.</p>
-
-		<p class="text">Despite facing numerous obstacles, she started a cooperative with 20 women. They collected money through agriculture and invested in an informal savings account. The loans from the cooperative have been used for buffalo husbandry, agriculture, and education. <strong>Phool Maya</strong> kept a very interesting condition about payback of the loan-a portion of the money earned would be used teach a girl in the family.</p>
-
-		<p class="text">This cooperative is up and running till date. The initial saving of 50 Rupees has reached 22 Lakhs, involving 300 people. <strong>Phool Maya</strong> has also participated in many community projects, helped set up about 100 houses during the earthquake, and started Bhattidanda Homestay.</p>
-
-		<p class="text">Bhattidanda Homestay was initiated on April 28, 2011. It directly purchases fruits, vegetables and dairy products from the farmers. <strong>Phool Maya</strong> has helped improve the lives of many people through this venture and made them self-sufficient, educated and financially stable.</p>
-
-		<p class="text">She was awarded with Surya Asha Nepal Social Entrepreneurship Award in the year 2013 for her dedication and hard work towards the community of Bhattidanda. Yet, this is not the end for her. She wants to contribute more and she believes that there is still a long way to go.</p> --}}
+	
 	</div>
 </div>
 

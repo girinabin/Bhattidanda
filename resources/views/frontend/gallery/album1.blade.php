@@ -1,4 +1,14 @@
 @extends('frontend.home-master')
+
+@foreach($images as $image)
+<?php $test = App\Album::where('id',$image['album_id'])->get()->first();
+?>
+
+@section('title',$test->seotitle)
+@section('keyword',$test->seokeyword)
+@section('description',$test->seodescription)
+@endforeach
+
 @section('content')
 
 
@@ -8,7 +18,7 @@
 		<div class="room-inline room-pad">
 			<a href="{{url('public/images/gallery/restaurant/1.jpg')}}" class="flipLightBox ">
 				<img src="{{url('public/uploads/gallery/'.$image->image)}}" class="room-img img-responsive" width="300" height="300" alt="flipLightBox Image 1" />
-				<!-- <span><b>LightBox</b> Text to accompany first lightbox image</span> -->
+				
 			</a>
 
 		</div>
@@ -19,43 +29,5 @@
 
 
 
-<!-- <div class="container margin-all margin-bottom-all">
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall1.jpg')}}" class="img-responsive">
-	</div>
-
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall2.jpg')}}" class="img-responsive">
-	</div>
-
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall2.jpg')}}" class="img-responsive">
-	</div>
-
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall3.jpg')}}" class="img-responsive">
-	</div>
-
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall1.jpg')}}" class="img-responsive">
-	</div>
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall2.jpg')}}" class="img-responsive">
-	</div>
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall3.jpg')}}" class="img-responsive">
-	</div>
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall1.jpg')}}" class="img-responsive">
-	</div>
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall2.jpg')}}" class="img-responsive">
-	</div>
-	<div class="col-md-3 room-pad">
-				<img src="{{url('public/images/gall3.jpg')}}" class="img-responsive">
-	</div>
-
-</div>
- -->
 
 @endsection

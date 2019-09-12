@@ -35,6 +35,7 @@ Seo Form
 									<label for="page">Seo Pages</label>	
 									<select name="page" id="page" class="form-control">
 										<option value="	">Select Seo Page</option>
+										<option value="home"{{old('page')=='home'? 'selected' : ''}}>Home page</option>
 										<option value="about"{{old('page')=='about'? 'selected' : ''}}>About page</option>
 										<option value="package"{{old('page')=='package'? 'selected' : ''}}>Package page</option>
 										<option value="service"{{old('page')=='service'? 'selected' : ''}}>Service Page</option>

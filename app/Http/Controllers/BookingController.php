@@ -64,8 +64,14 @@ class BookingController extends Controller
 
         ]);
     }
-    public function binboxdestroy(Booking $booking){
-        
+    public function binboxdestroy(Booking $booking)
+    {  
+       $rep = BookingStatus::where('booking_id',$booking->id)->get();
+        foreach($rep as $r){
+            $r->delete();
+        }
+
+    
         $booking->delete();
         return redirect('bookings/inbox')->with('error','Message Deleted Successfully!!');
     }
@@ -122,8 +128,7 @@ class BookingController extends Controller
     	return view('cd-admin.home.bookings.sentmsgbooking',compact('bookings'));
     }
 
-    public function breplydestroy(BookingReply $booking)
-    {
+    public function breplydestroy(BookingReply $booking){
         
         $booking->delete();
         return redirect('breplyinbox/')->with('error','Message Deleted Successfully!!');

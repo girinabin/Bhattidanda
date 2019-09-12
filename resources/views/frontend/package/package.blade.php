@@ -1,5 +1,7 @@
 @extends('frontend.home-master')
-
+@section('title',$seo->seotitle)
+@section('keyword',$seo->seokeyword)
+@section('description',$seo->seodescription)
 @section('content')
 
 <div class="container-fluid mayaimage packageimg">
