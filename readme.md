@@ -1,72 +1,124 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+# Laravel Application Routes Overview
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+This document provides an overview of the web routes available in this Laravel application. These routes are loaded by the `RouteServiceProvider` within a group containing the "web" middleware group.
 
-## About Laravel
+## Frontend Routes
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+These routes are accessible to all users and provide various frontend functionalities:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- `GET /` - Displays the home page (`FrontendController@home`).
+- `GET /home` - Displays the home page (`FrontendController@home`).
+- `GET /know-about-phool-maya` - Displays information about Phool Maya (`FrontendController@knowabout`).
+- `GET /booking/{slug}` - Displays booking information (`FrontendController@booking`). Named route: `booking`.
+- `GET /contact` - Displays the contact page (`FrontendController@contact`).
+- `GET /gallery` - Displays the gallery page (`FrontendController@gallery`).
+- `GET /room` - Displays room information (`FrontendController@room`).
+- `GET /package` - Displays package information (`FrontendController@package`). Named route: `package`.
+- `GET /ourservice` - Displays our services (`FrontendController@ourservice`).
+- `GET /album1/{id}` - Displays album details (`FrontendController@album1`). Named route: `album1`.
+- `GET /whyus` - Explains why to choose us (`FrontendController@whyus`). Named route: `whyus`.
+- `GET /guestreviews` - Displays guest reviews (`FrontendController@guestreviews`).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Authentication Routes
 
-## Learning Laravel
+These routes handle user authentication:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- `Auth::routes()` - Registers the default authentication routes provided by Laravel.
+- `GET /homedashboard` - Displays the home dashboard (`HomeController@index`). Named route: `home`.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1400 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Admin Routes
 
-## Laravel Sponsors
+These routes are protected by the `auth` middleware and are accessible only to authenticated users:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### View Composer
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
+- **Header View Composer**: Provides various counts for the admin header.
 
-## Contributing
+### Admin Management
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- `GET /adminadd` - Displays the admin add page (`AdminController@adminadd`). Named route: `admin.add`.
+- `POST /adminstore` - Stores a new admin (`AdminController@adminstore`). Named route: `admin.store`.
+- `GET /adminindex` - Displays the list of admins (`AdminController@adminindex`). Named route: `admin.index`.
+- `POST /admindelete/{admin}` - Deletes an admin (`AdminController@admindestroy`). Named route: `admin.destroy`.
 
-## Security Vulnerabilities
+### Dashboard
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- `GET /dashboard` - Displays the admin dashboard (`DashboardController@index`). Named route: `dashboard`.
+- `GET /logout` - Logs out the user (`DashboardController@logout`). Named route: `logout`.
 
-## License
+### Introduction Management
 
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- `POST /introstore` - Stores introduction details (`DashboardController@introstore`). Named route: `intro.store`.
+- `GET /introview` - Displays introduction details (`DashboardController@introview`). Named route: `intro.view`.
+- `POST /introupdate` - Updates introduction details (`DashboardController@introupdate`). Named route: `intro.update`.
+
+### Service Management
+
+- `GET /services` - Lists all services (`ServiceController@index`). Named route: `services.index`.
+- `GET /services/create` - Displays the create service form (`ServiceController@create`). Named route: `services.create`.
+- `POST /services/store` - Stores a new service (`ServiceController@store`). Named route: `services.store`.
+- `PATCH /services/{service}` - Updates a service (`ServiceController@update`). Named route: `services.update`.
+- `GET /services/{service}` - Displays a service (`ServiceController@show`). Named route: `services.show`.
+- `DELETE /services/{service}` - Deletes a service (`ServiceController@destroy`). Named route: `services.destroy`.
+- `PATCH /status/{service}` - Updates service status (`ServiceController@servicestatus`). Named route: `status.service`.
+
+### Package Management
+
+- `GET /packages/create` - Displays the create package form (`PackageController@packagecreate`). Named route: `packages.create`.
+- `GET /packages/{package}-{slug}` - Displays a package (`PackageController@packageshow`). Named route: `packages.show`.
+- `GET /packages` - Lists all packages (`PackageController@packageindex`). Named route: `packages.index`.
+- `POST /packages/store` - Stores a new package (`PackageController@packagestore`). Named route: `packages.store`.
+- `POST /status/{package}` - Updates package status (`PackageController@packagestatus`). Named route: `status.package`.
+- `POST /packages/{package}` - Deletes a package (`PackageController@destroy`). Named route: `packages.destroy`.
+- `POST /packagesupdate/{package}` - Updates a package (`PackageController@packagesupdate`). Named route: `packages.update`.
+
+### Gallery Management
+
+- `GET /images` - Lists all images (`GalleryController@index`). Named route: `images.index`.
+- `GET /images/create` - Displays the create image form (`GalleryController@create`). Named route: `images.create`.
+- `GET /gallery/create/{id?}` - Displays the create gallery form (`GalleryController@gallerycreate`). Named route: `gallery.create`.
+- `POST /images/store` - Stores a new image (`GalleryController@store`). Named route: `images.store`.
+- `GET /images/{image}` - Displays an image (`GalleryController@show`). Named route: `images.show`.
+- `DELETE /images/{image}` - Deletes an image (`GalleryController@destroy`). Named route: `images.destroy`.
+- `POST /imagealbums` - Stores an image album (`GalleryController@store1`). Named route: `imagealbums.store1`.
+- `DELETE /imagealbums/{imagealbum}` - Deletes an image album (`GalleryController@destroy1`). Named route: `imagealbums.destroy1`.
+- `POST /stats/{alb}` - Updates album status (`GalleryController@albumstatus`). Named route: `s.album`.
+- `POST /stat/{img}` - Updates image status (`GalleryController@imagestatus`). Named route: `s.image`.
+
+### Carousel Management
+
+- `GET /carousels` - Lists all carousels (`CarouselController@index`). Named route: `carousels.index`.
+- `GET /carousels/create` - Displays the create carousel form (`CarouselController@create`). Named route: `carousels.create`.
+- `POST /carousels/store` - Stores a new carousel (`CarouselController@store`). Named route: `carousels.store`.
+- `GET /carousels/{carousel}` - Displays a carousel (`CarouselController@show`). Named route: `carousels.show`.
+- `DELETE /carousels/{carousel}` - Deletes a carousel (`CarouselController@destroy`). Named route: `carousels.destroy`.
+- `POST /caro/{stat}` - Updates carousel status (`CarouselController@cstatus`). Named route: `caro.stat`.
+
+### Booking Management
+
+- `POST /bookings/store` - Books a package (`BookingController@packagebook`). Named route: `packages.book`.
+- `GET /bookingscreate/{slug}` - Displays the create booking form (`BookingController@bookingcreate`). Named route: `booking.create`.
+- `GET /bookings/inbox` - Displays the booking inbox (`BookingController@bookinginbox`). Named route: `bookings.inbox`.
+- `GET /bookingsinboxshow/{booking}` - Displays booking details (`BookingController@bookinginboxshow`). Named route: `bookings.inboxshow`.
+- `POST /bookingsdelete/{booking}` - Deletes a booking (`BookingController@binboxdestroy`). Named route: `binbox.destroy`.
+- `GET /bookingsreplycreate/{booking}` - Displays the booking reply form (`BookingController@breplycreate`). Named route: `breply.create`.
+- `POST /bookingsrply/{contact}` - Sends a booking reply (`BookingController@mailreply`). Named route: `bookings.mailreply`.
+- `POST /bstatusrply/{id}` - Updates booking reply status (`BookingController@statusreply`). Named route: `b.statusreply`.
+- `GET /breplyinbox` - Displays the booking reply inbox (`BookingController@breplyinbox`). Named route: `breply.inbox`.
+- `POST /breplydestroy/{booking}` - Deletes a booking reply (`BookingController@breplydestroy`). Named route: `breply.destroy`.
+- `GET /breplyview/{booking}` - Displays booking reply details (`BookingController@breplyview`). Named route: `breply.view`.
+
+### Review Management
+
+- `GET /reviews` - Lists all reviews (`ReviewController@index`). Named route: `reviews.index`.
+- `GET /reviews/create` - Displays the create review form (`ReviewController@create`). Named route: `reviews.create`.
+- `GET /reviews/{review}` - Displays a review (`ReviewController@show`). Named route: `reviews.show`.
+- `POST /reviews/store` - Stores a new review (`ReviewController@store`). Named route: `reviews.store`.
+- `PATCH /reviews/{review}` - Updates a review (`ReviewController@update`). Named route: `reviews.update`.
+- `DELETE /reviews/{review}` - Deletes a review (`ReviewController@destroy`). Named route: `reviews.destroy`.
+- `PATCH /stat/{rev}` - Updates review status (`ReviewController@rstatus`). Named route: `rev.stat`.
+
+### About Management
+
+- `GET /about` - Displays the about page (`AboutController@about`). Named route: `about`.
+- `GET /aboutshow`
